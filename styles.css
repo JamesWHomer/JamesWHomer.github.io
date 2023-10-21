@@ -14,7 +14,7 @@ header, .event {
 
 header {
     color: #000;
-    text-align: center;
+    text-align: center; 
     padding: 60px 0;
     display: flex;
     justify-content: center;
@@ -99,6 +99,36 @@ header p, .details p {
     margin-bottom: 2px;
 }
 
+.hobbies {
+    max-width: 80%;
+    margin: 0 auto; 
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.hobbies h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.hobby {
+    margin-bottom: 20px;
+}
+
+.hobby h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.hobby p {
+    font-size: 1.2em;
+    color: #7f8c8d;
+    line-height: 1.6;
+}
+
 @media (max-width: 768px) {
     header {
         background: none;
@@ -137,6 +167,10 @@ header p, .details p {
         padding-left: 0;
         border-left: none;
         text-align: center;
+    }
+    .hobbies {
+        max-width: 95%;
+        padding: 15px;
     }
 }
 
