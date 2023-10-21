@@ -129,6 +129,50 @@ header p, .details p {
     line-height: 1.6;
 }
 
+.tech-skills {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.tech-skills h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.tech-skills ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tech-skills li {
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 10px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.tech-skills img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain; 
+    transition: transform 0.2s ease-in-out;
+}
+
+.tech-skills img:hover {
+    transform: scale(1.15);
+}
+
+
+
 @media (max-width: 768px) {
     header {
         background: none;
