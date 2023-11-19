@@ -49,7 +49,7 @@ header p, .details p {
 .timespan {
     flex: 0.3;
     font-size: 18px;
-    color: #a1a1a1;
+    color: #696969;
 }
 
 .details {
@@ -59,7 +59,7 @@ header p, .details p {
 }
 
 .details p {
-    color: #7f8c8d;
+    color: #696969;
 }
 
 .profile-container {
@@ -125,7 +125,7 @@ header p, .details p {
 
 .hobby p {
     font-size: 1.2em;
-    color: #7f8c8d;
+    color: #696969;
     line-height: 1.6;
 }
 
