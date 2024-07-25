@@ -114,16 +114,12 @@ header p, .details p {
     text-align: center;
 }
 
-.hobby {
-    margin-bottom: 20px;
-}
-
-.hobby h3 {
+.hobbies h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
 }
 
-.hobby p {
+.hobbies p {
     font-size: 1.2em;
     color: #696969;
     line-height: 1.6;
