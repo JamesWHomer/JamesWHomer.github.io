@@ -608,35 +608,117 @@ section:nth-child(even) {
     font-size: 16px;
 }
 
-/* Footer */
-footer {
-    background-color: var(--dark-color);
-    color: white;
-    padding: 40px 0;
+/* Footer - Modern Redesign */
+.footer {
+    background-color: var(--section-bg);
+    padding: 60px 0 40px;
+    position: relative;
 }
 
-footer .container {
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+}
+
+.footer-content {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
+    text-align: center;
 }
 
-footer p {
-    font-size: 16px;
-    opacity: 0.8;
+.footer-logo {
+    margin-bottom: 30px;
 }
 
-footer .social-links a {
-    color: white;
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    padding: 8px 12px;
+    border: 1px solid var(--primary-color);
+}
+
+.footer-links {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-links a {
+    color: var(--text-color);
+    font-size: 15px;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s;
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+.footer-social {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.footer-social a {
+    color: var(--text-color);
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.footer-copyright {
+    color: var(--text-color);
     opacity: 0.7;
-    width: 40px;
-    height: 40px;
+    font-size: 14px;
 }
 
-footer .social-links a:hover {
-    opacity: 1;
+@media (max-width: 768px) {
+    .footer {
+        padding: 50px 0 30px;
+    }
+    
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-links {
+        gap: 15px 25px;
+    }
+    
+    .footer-social {
+        gap: 20px;
+    }
 }
 
 /* Media Queries */
