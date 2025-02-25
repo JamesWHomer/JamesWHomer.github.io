@@ -6,88 +6,260 @@
     <meta name="description" content="James Watson Homer's personal portfolio showcasing academic pursuits, programming projects, and personal interests like music and martial arts.">
     <meta name="keywords" content="James Watson Homer, Portfolio, Programming, Music, Martial Arts, Education, Technology, Judo, Piano, Sweden, International Baccalaureate, Computer Science, Java, Python, C++, JavaScript">
     <link rel="stylesheet" href="styles.css">
-    <title>James Homer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>James Homer | Software Engineer</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-    <header>
-        <div class="profile-container">
-            <img src="images/pfp_small.jpg" alt="Profile picture of James Homer" class="profile-picture"> 
-            <div class="profile-text">
-                <h1>James Watson Homer</h1>
-                <p>My dream? To be a part of the race towards the Singularity.</p>
-            </div>
-            <div class="socials">
-                <a href = "https://twitter.com/JamesWHomer" target="_blank" rel="noopener noreferrer" title="Link to my Twitter">
-                    <img class ="iico" src="images/socials/ctwitter.svg" alt="Twitter logo">
-                </a>
-                <a href = "https://github.com/JamesWHomer" target="_blank" rel="noopener noreferrer" title="Link to my Github">
-                    <img class ="iico" src="images/socials/cgithub.svg" alt="Github logo">
-                </a>
-                <a href = "https://www.instagram.com/jameswatsonhomer/" target="_blank" rel="noopener noreferrer" title="Link to my Instagram">
-                    <img class ="iico" src="images/socials/cinstagram.svg" alt="Instagram logo">
-                </a>
-                <a href = "mailto:contact@jameshomer.dev" title="Send me an email at contact@jameshomer.dev">
-                    <img class ="iico" src="images/socials/cemail.svg" alt="Mailto link">
-                </a>
-            </div>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo pixel-font">JH</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#interests">Interests</a></li>
+            </ul>
         </div>
-    </header>
-    <section class="timeline">
-        <div class="event">
-            <div class="timespan">2024-Now</div>
-            <div class="details"> 
-                <p>I am studying Computer Science at the University of Sydney to graduate with a degree in Advanced Computing. I am also a member of the University of Sydney Rocketry Team as a ground control engineer.</p>
-            </div>
-        </div>
-        <div class="event">
-            <div class="timespan">2021-24</div>
-            <div class="details">
-                <p>
-                    I studied in Sweden at The International Highschool (of the Gothenburg Region) under the International Baccalaureate (IB) program. Although my chosen subjects were heavily focus on STEM, I maintained a wide interest in other fields, such as a History. 
-                </p>
-            </div>
-        </div>
-        <div class="event">
-            <div class="timespan">2019</div>
-            <div class="details"> 
-                <p>At age 13, self initiated learning led me to explore Java through Minecraft plugins, eventually mastering Java and expanding my repertoire into C++, Javascript and Python. I spent my next few years gradually improving my skills, as well as doing some freelance work on the side, learning how to deal effectively with clients and manage my time.</p>
-            </div>
-        </div>
-        <div class="event">
-            <div class="timespan">2016</div>
-            <div class="details"> 
-                <p>At age 10, my already existing interest in all things computer led me to the education focused visual programming tool Scratch where I became addicted. This would set me on the path of programming, improving my logical reasoning and mathematical abilities.</p>
-            </div>
-        </div>
-        <div class="event">
-            <div class="timespan">2006</div>
-            <div class="details">
-                <p>🇦🇺 Born in Sydney, Australia</p>
+    </nav>
+
+    <section id="about" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-image">
+                    <img src="images/pfp_small.jpg" alt="James Homer">
+                </div>
+                <div class="hero-text">
+                    <h1>James Watson Homer</h1>
+                    <h2>Software Engineer & Computer Science Student</h2>
+                    <p class="tagline">"My dream? To be a part of the race towards the Singularity."</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/JamesWHomer" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://github.com/JamesWHomer" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.instagram.com/jameswatsonhomer/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="mailto:contact@jameshomer.dev" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <section class="hobbies">
-        <h2>Away from Keyboard</h2>
-        <p>
-            When not at my computer I spend my time on multiple different hobbies. For example I have played the piano for over 11 year and the trumpet for 9. I've played in several bands and orchestra's throughout my time as a musician, as well as joining several music camps. In addition to mental hobbies I believe it's important to maintain physical prowess, that's why in my recent years I've been practicing Judo. Through Judo I've improved my physical resiliance and gained the values of respect and perseverance, both on and off the mat. 
-        </p>
+
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title pixel-font">Experience & Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date pixel-font">2024 - Present</div>
+                    <div class="timeline-content">
+                        <h3>University of Sydney</h3>
+                        <p class="timeline-position">Advanced Computing (Computer Science)</p>
+                        <p>Pursuing a degree in Advanced Computing while serving as a ground control engineer for the University of Sydney Rocketry Team.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date pixel-font">2021 - 2024</div>
+                    <div class="timeline-content">
+                        <h3>The International Highschool (Gothenburg, Sweden)</h3>
+                        <p class="timeline-position">International Baccalaureate Program</p>
+                        <p>Focused on STEM subjects while maintaining broad interests in the humanities, particularly History.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date pixel-font">2019 - 2021</div>
+                    <div class="timeline-content">
+                        <h3>Self-Directed Learning & Freelance Work</h3>
+                        <p class="timeline-position">Programming & Client Projects</p>
+                        <p>Mastered Java through Minecraft plugin development, expanded skills to C++, JavaScript, and Python while taking on freelance projects and developing client management skills.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date pixel-font">2016</div>
+                    <div class="timeline-content">
+                        <h3>First Steps in Programming</h3>
+                        <p>Discovered programming through Scratch, developing logical reasoning and mathematical abilities that set the foundation for future technical growth.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date pixel-font">2006</div>
+                    <div class="timeline-content">
+                        <h3>Born in Sydney, Australia 🇦🇺</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    <section class="tech-skills">
-        <h2>Languages and Technologies</h2>
-        <ul>
-            <li><img src="images\logos\cpp.svg" alt="C++ logo"></li>
-            <li><img src="images\logos\java.webp" alt="Java logo"></li>
-            <!-- <li><img src="images\logos\paper.png" alt="Paper logo"></li> -->
-            <li><img src="images\logos\python.svg" alt="Python logo"></li>
-            <!--<li><img src="images\logos\tensorflow.svg" alt="Tensorflow logo"></li>-->
-            <li><img src="images\logos\git.svg" alt="Git logo"></li>
-            <li><img src="images\logos\javascript.svg" alt="Javascript logo"></li>
-            <li><img src="images\logos\html.svg" alt="HTML logo"></li>
-            <li><img src="images\logos\css.png" alt="CSS logo"></li>
-            <li><img src="images\logos\sql.png" alt="SQL logo"></li>
-        </ul>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title pixel-font">Technical Skills</h2>
+            
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control"></span>
+                        <span class="control"></span>
+                        <span class="control"></span>
+                    </div>
+                    <div class="terminal-title">skills.sh</div>
+                </div>
+                
+                <div class="terminal-body">
+                    <div class="command-line">
+                        <span class="prompt">james@homer:~$</span> 
+                        <span class="command">cat skills.json</span>
+                    </div>
+                    
+                    <div class="output">
+                        <div class="code-block">
+                            <div class="line"><span class="bracket">{</span></div>
+                            <div class="line indent"><span class="key">"languages"</span><span class="colon">:</span> <span class="bracket">{</span></div>
+                            <div class="line double-indent"><span class="key">"C++"</span><span class="colon">:</span> <span class="value">"Advanced"</span><span class="comma">,</span></div>
+                            <div class="line double-indent"><span class="key">"Java"</span><span class="colon">:</span> <span class="value">"Advanced"</span><span class="comma">,</span></div>
+                            <div class="line double-indent"><span class="key">"Python"</span><span class="colon">:</span> <span class="value">"Advanced"</span><span class="comma">,</span></div>
+                            <div class="line double-indent"><span class="key">"JavaScript"</span><span class="colon">:</span> <span class="value">"Intermediate"</span></div>
+                            <div class="line indent"><span class="bracket">}</span><span class="comma">,</span></div>
+                            
+                            <div class="line indent"><span class="key">"webTechnologies"</span><span class="colon">:</span> <span class="bracket">{</span></div>
+                            <div class="line double-indent"><span class="key">"HTML5"</span><span class="colon">:</span> <span class="value">"Intermediate"</span><span class="comma">,</span></div>
+                            <div class="line double-indent"><span class="key">"CSS3"</span><span class="colon">:</span> <span class="value">"Intermediate"</span><span class="comma">,</span></div>
+                            <div class="line double-indent"><span class="key">"Git"</span><span class="colon">:</span> <span class="value">"Advanced"</span><span class="comma">,</span></div>
+                            <div class="line double-indent"><span class="key">"SQL"</span><span class="colon">:</span> <span class="value">"Intermediate"</span></div>
+                            <div class="line indent"><span class="bracket">}</span><span class="comma">,</span></div>
+                            
+                            <div class="line indent"><span class="key">"frameworks"</span><span class="colon">:</span> <span class="bracket">{</span></div>
+                            <div class="line double-indent"><span class="key">"React"</span><span class="colon">:</span> <span class="value">"Beginner"</span><span class="comma">,</span></div>
+                            <div class="line double-indent"><span class="key">"Node.js"</span><span class="colon">:</span> <span class="value">"Beginner"</span></div>
+                            <div class="line indent"><span class="bracket">}</span><span class="comma">,</span></div>
+                            
+                            <div class="line indent"><span class="key">"tools"</span><span class="colon">:</span> <span class="bracket">{</span></div>
+                            <div class="line double-indent"><span class="key">"Linux"</span><span class="colon">:</span> <span class="value">"Intermediate"</span><span class="comma">,</span></div>
+                            <div class="line double-indent"><span class="key">"Docker"</span><span class="colon">:</span> <span class="value">"Intermediate"</span></div>
+                            <div class="line indent"><span class="bracket">}</span></div>
+                            <div class="line"><span class="bracket">}</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="command-line">
+                        <span class="prompt">james@homer:~$</span> 
+                        <span class="command">./analyze-skills.sh</span>
+                    </div>
+                    
+                    <div class="output-analysis">
+                        <div class="analysis-line"><span class="advanced">Advanced:</span> C++, Java, Python, Git</div>
+                        <div class="analysis-line"><span class="intermediate">Intermediate:</span> JavaScript, HTML5, CSS3, SQL, Linux, Docker</div>
+                        <div class="analysis-line"><span class="beginner">Beginner:</span> React, Node.js</div>
+                    </div>
+                    
+                    <div class="command-line">
+                        <span class="prompt">james@homer:~$</span> 
+                        <span class="command blink">_</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    
+
+    <section id="interests" class="interests">
+        <div class="container">
+            <h2 class="section-title pixel-font">Beyond Coding</h2>
+            <div class="interests-container">
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="pixel-font">Music</h3>
+                    <p>11+ years of piano and 9 years of trumpet experience, playing in bands and orchestras throughout my musical journey.</p>
+                </div>
+                
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-fist-raised"></i>
+                    </div>
+                    <h3 class="pixel-font">Martial Arts</h3>
+                    <p>Practicing Judo to improve physical resilience while learning the values of respect and perseverance both on and off the mat.</p>
+                </div>
+                
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="pixel-font">Rocketry</h3>
+                    <p>Ground control engineer for the University of Sydney Rocketry Team, combining engineering skills with passion for aerospace.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 James Watson Homer. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://twitter.com/JamesWHomer" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://github.com/JamesWHomer" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.instagram.com/jameswatsonhomer/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:contact@jameshomer.dev" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add active class to nav items on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200 && window.pageYOffset < sectionTop + sectionHeight - 200) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
