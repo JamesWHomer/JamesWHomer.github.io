@@ -124,72 +124,87 @@ img {
     width: 100%;
 }
 
-/* Hero Section */
+/* Hero Section - Centered Design */
 .hero {
-    padding: 180px 0 120px;
+    padding: 120px 0 100px;
     background-color: var(--light-color);
-    min-height: 100vh;
     display: flex;
     align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0,0,0,0.05), transparent);
 }
 
 .hero-content {
-    display: flex;
-    align-items: center;
-    gap: 100px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.profile-image {
-    flex-shrink: 0;
-    position: relative;
-}
-
-.profile-image img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.hero-text {
-    flex: 1;
-}
-
-.hero-text h1 {
-    font-size: 40px;
-    margin-bottom: 15px;
+.name-title {
+    font-size: 38px;
+    font-weight: 700;
     color: var(--dark-color);
+    margin-bottom: 12px;
+    position: relative;
+    padding-bottom: 8px;
+    display: inline-block;
 }
 
-.hero-text h2 {
-    font-size: 22px;
+.name-title::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 2px;
+    background-color: var(--dark-color);
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+
+.role-title {
+    font-size: 20px;
     font-weight: 400;
-    color: var(--primary-color);
-    margin-bottom: 24px;
+    color: var(--text-color);
+    margin-bottom: 28px;
+    letter-spacing: 0.3px;
 }
 
 .tagline {
-    font-family: 'Inter', sans-serif;
     font-size: 18px;
     font-style: italic;
-    margin-bottom: 36px;
     color: var(--text-color);
-    border-left: 1px solid var(--primary-color);
-    padding-left: 20px;
+    margin-bottom: 30px;
+    max-width: 550px;
+    line-height: 1.6;
+    opacity: 0.85;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .social-links {
     display: flex;
-    gap: 24px;
+    gap: 20px;
+    justify-content: center;
 }
 
 .social-links a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
+    color: var(--dark-color);
+    font-size: 18px;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social-links a:hover {
     color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
 /* Section Styles */
@@ -290,60 +305,85 @@ section:nth-child(even) {
     font-size: 16px;
 }
 
-/* Technical Skills Section */
+/* Technical Skills Section - Refined Terminal */
 .skills {
     background-color: var(--section-bg);
+    padding-bottom: 80px;
 }
 
 .terminal {
     background-color: #1E1E1E;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    font-family: 'Courier New', monospace;
-    margin-top: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    margin: 50px auto;
+    max-width: 900px;
+    border: 1px solid #333333;
 }
 
 .terminal-header {
-    background-color: #333333;
-    padding: 10px 15px;
+    background-color: #252525;
+    padding: 12px 16px;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid #333333;
 }
 
 .terminal-controls {
     display: flex;
-    gap: 6px;
-    margin-right: 15px;
+    gap: 8px;
+    margin-right: 18px;
 }
 
 .control {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #555555;
+    transition: opacity 0.2s ease;
+}
+
+.control:nth-child(1) {
+    background-color: #FF5F56;
+}
+
+.control:nth-child(2) {
+    background-color: #FFBD2E;
+}
+
+.control:nth-child(3) {
+    background-color: #27C93F;
+}
+
+.terminal:hover .control {
+    opacity: 1;
 }
 
 .terminal-title {
     color: #AAAAAA;
     font-size: 14px;
+    flex: 1;
+    text-align: center;
+    font-weight: 300;
 }
 
 .terminal-body {
-    padding: 25px;
+    padding: 30px;
     color: #FFFFFF;
+    font-size: 16px;
+    line-height: 1.6;
 }
 
 .command-line {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     display: flex;
     align-items: center;
 }
 
 .prompt {
     color: #16C60C;
-    margin-right: 8px;
-    font-weight: bold;
+    margin-right: 10px;
+    font-weight: 500;
 }
 
 .command {
@@ -351,35 +391,44 @@ section:nth-child(even) {
 }
 
 .output {
-    margin-bottom: 25px;
-    padding-left: 10px;
+    margin-bottom: 35px;
+    padding-left: 15px;
     border-left: 1px solid #444444;
 }
 
 .code-block {
-    font-family: 'Courier New', monospace;
-    margin-bottom: 15px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    margin-bottom: 20px;
+    line-height: 1.8;
 }
 
 .line {
-    margin-bottom: 5px;
-    font-size: 15px;
+    margin-bottom: 6px;
+    font-size: 16px;
+    display: block;
+    position: relative;
+}
+
+.line:hover {
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 .indent {
-    padding-left: 20px;
+    padding-left: 25px;
 }
 
 .double-indent {
-    padding-left: 40px;
+    padding-left: 50px;
 }
 
 .key {
-    color: #569CD6;
+    color: #4EC9B0;
 }
 
 .value {
     color: #CE9178;
+    word-break: normal;
+    overflow-wrap: break-word;
 }
 
 .colon, .comma {
@@ -390,50 +439,117 @@ section:nth-child(even) {
     color: #D4D4D4;
 }
 
+.skill-highlight {
+    display: inline-block;
+    background-color: rgba(77, 151, 255, 0.15);
+    transition: all 0.3s ease;
+    padding: 0 4px;
+    border-radius: 2px;
+}
+
+.skill-highlight:hover {
+    background-color: rgba(77, 151, 255, 0.3);
+}
+
 .output-analysis {
-    margin-bottom: 25px;
-    padding-left: 10px;
+    margin-bottom: 35px;
+    padding-left: 15px;
     border-left: 1px solid #444444;
     line-height: 1.8;
 }
 
-.analysis-line {
+.tech-stack-line {
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.tech-stack-label {
+    color: #FFFFFF;
+    font-weight: 500;
     margin-bottom: 8px;
-    font-size: 15px;
+    display: inline-block;
+    min-width: 150px;
 }
 
-.advanced {
-    color: #16C60C; /* Terminal green */
-    font-weight: bold;
+.tech-stack-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 5px;
 }
 
-.intermediate {
-    color: #FFA500; /* Terminal orange */
-    font-weight: bold;
+.tech-item {
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.beginner {
-    color: #3B78FF; /* Terminal blue */
-    font-weight: bold;
+.tech-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
-.blink {
-    animation: blink 1s infinite;
+.tech-item.system {
+    background-color: rgba(255, 107, 107, 0.1);
+    border-left: 3px solid #FF6B6B;
 }
 
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+.tech-item.data {
+    background-color: rgba(70, 209, 190, 0.1);
+    border-left: 3px solid #46D1BE;
+}
+
+.tech-item.web {
+    background-color: rgba(83, 82, 237, 0.1);
+    border-left: 3px solid #5352ED;
+}
+
+.tech-item.workflow {
+    background-color: rgba(254, 202, 87, 0.1);
+    border-left: 3px solid #FECA57;
 }
 
 @media (max-width: 768px) {
     .terminal-body {
-        padding: 15px;
+        padding: 20px;
     }
     
     .line {
         font-size: 14px;
+    }
+    
+    .indent {
+        padding-left: 20px;
+    }
+    
+    .double-indent {
+        padding-left: 40px;
+    }
+    
+    .analysis-line {
+        flex-direction: column;
+        margin-bottom: 16px;
+    }
+    
+    .skill-level {
+        margin-bottom: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal {
+        margin-top: 30px;
+    }
+    
+    .terminal-body {
+        padding: 16px;
+        font-size: 12px;
+    }
+    
+    .line {
+        font-size: 12px;
     }
     
     .indent {
@@ -442,25 +558,6 @@ section:nth-child(even) {
     
     .double-indent {
         padding-left: 30px;
-    }
-}
-
-@media (max-width: 480px) {
-    .terminal-body {
-        padding: 10px;
-        font-size: 12px;
-    }
-    
-    .line {
-        font-size: 12px;
-    }
-    
-    .indent {
-        padding-left: 10px;
-    }
-    
-    .double-indent {
-        padding-left: 20px;
     }
 }
 
@@ -578,15 +675,19 @@ footer .social-links a:hover {
     }
     
     .hero {
-        padding: 120px 0 80px;
+        padding: 100px 0 80px;
     }
     
-    .hero-text h1 {
+    .name-title {
         font-size: 32px;
     }
     
-    .hero-text h2 {
+    .role-title {
         font-size: 18px;
+    }
+    
+    .tagline {
+        font-size: 16px;
     }
     
     section {
@@ -607,9 +708,16 @@ footer .social-links a:hover {
 }
 
 @media (max-width: 480px) {
-    .profile-image img {
-        width: 160px;
-        height: 160px;
+    .hero {
+        padding: 80px 0 50px;
+    }
+    
+    .name-title {
+        font-size: 30px;
+    }
+    
+    .role-title {
+        font-size: 18px;
     }
     
     .section-title {
