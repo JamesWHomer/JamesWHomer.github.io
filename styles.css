@@ -126,7 +126,7 @@ img {
 
 /* Hero Section - Centered Design */
 .hero {
-    padding: 120px 0 100px;
+    padding: 160px 0 100px;
     background-color: var(--light-color);
     display: flex;
     align-items: center;
@@ -536,6 +536,10 @@ section:nth-child(even) {
     .skill-level {
         margin-bottom: 4px;
     }
+    
+    .hero {
+        padding: 140px 0 80px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -558,6 +562,10 @@ section:nth-child(even) {
     
     .double-indent {
         padding-left: 30px;
+    }
+    
+    .hero {
+        padding: 120px 0 50px;
     }
 }
 
@@ -757,7 +765,7 @@ section:nth-child(even) {
     }
     
     .hero {
-        padding: 100px 0 80px;
+        padding: 140px 0 80px;
     }
     
     .name-title {
@@ -790,10 +798,6 @@ section:nth-child(even) {
 }
 
 @media (max-width: 480px) {
-    .hero {
-        padding: 80px 0 50px;
-    }
-    
     .name-title {
         font-size: 30px;
     }
