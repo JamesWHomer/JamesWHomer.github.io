@@ -118,8 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         'Passionate about technology, music, and martial arts';
                 break;
             case 'skills':
-                output = '🔧 Core Systems: C++, Java, Linux\n' +
-                        '📊 Data & Automation: Python, SQL, Docker\n' +
+                output = '�� Core Systems: C++, Rust, Java, Linux\n' +
+                        '📊 Data & Automation: Python, OpenAI API, SQL, Docker\n' +
                         '🌐 Web Development: JavaScript, HTML5, CSS3, React, Node.js\n' +
                         '🔄 Workflow: Git';
                 break;
@@ -235,8 +235,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                  'Education:\n- Advanced Computing, University of Sydney (2024-Present)\n' +
                                  '- International Baccalaureate, The International Highschool (2021-2024)';
                     } else if (catArg === 'skills.txt') {
-                        output = '🔧 Core Systems: C++, Java, Linux\n' +
-                                 '📊 Data & Automation: Python, SQL, Docker\n' +
+                        output = '�� Core Systems: C++, Rust, Java, Linux\n' +
+                                 '📊 Data & Automation: Python, OpenAI API, SQL, Docker\n' +
                                  '🌐 Web Development: JavaScript, HTML5, CSS3, React, Node.js\n' +
                                  '🔄 Workflow: Git';
                     } else if (catArg === 'projects.txt') {
