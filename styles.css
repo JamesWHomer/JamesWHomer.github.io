@@ -372,18 +372,75 @@ section:nth-child(even) {
     color: #FFFFFF;
     font-size: 16px;
     line-height: 1.6;
+    position: relative;
+    cursor: text;
 }
 
-.command-line {
-    margin-bottom: 18px;
+.terminal-body.focused {
+    outline: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.interactive-line {
     display: flex;
+    position: relative;
     align-items: center;
+    height: 24px;
+    margin-bottom: 10px;
 }
 
 .prompt {
     color: #16C60C;
     margin-right: 10px;
     font-weight: 500;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+.interactive-input {
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 16px;
+    caret-color: transparent;
+    flex: 1;
+    margin-left: 4px;
+    padding: 0;
+    line-height: 24px;
+    height: 24px;
+}
+
+.interactive-input:focus {
+    outline: none;
+}
+
+.terminal-commands {
+    margin-top: 8px;
+    color: #AAAAAA;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.command-output {
+    white-space: pre-wrap;
+    color: #A5E075;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.error-output {
+    white-space: pre-wrap;
+    color: #FF6B6B;
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.command-line {
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
 }
 
 .command {
@@ -890,5 +947,26 @@ section:nth-child(even) {
 @media (max-width: 480px) {
     .timeline-split-item h3 {
         font-size: 18px;
+    }
+}
+
+.blink {
+    display: inline-block;
+    width: 10px;
+    height: 17px;
+    background-color: #FFFFFF;
+    animation: blink 1.2s step-end infinite;
+    position: absolute;
+    top: 3px;
+    left: 0;
+    z-index: 5;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
     }
 }
