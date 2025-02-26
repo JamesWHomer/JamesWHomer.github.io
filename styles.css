@@ -823,3 +823,72 @@ section:nth-child(even) {
         flex-direction: column;
     }
 }
+
+/* Split timeline content for side-by-side entries */
+.split-content {
+    display: flex;
+    gap: 40px;
+    position: relative;
+}
+
+.split-content::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 80%;
+    background-color: var(--border-color);
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+}
+
+.timeline-split-item {
+    flex: 1;
+    min-width: 0; /* Ensures proper flexbox behavior */
+}
+
+/* Match exact styles from the regular timeline items */
+.timeline-split-item h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: var(--dark-color);
+    font-weight: 500;
+}
+
+.timeline-split-item .timeline-position {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 18px;
+}
+
+.timeline-split-item p:not(.timeline-position) {
+    font-size: 16px;
+}
+
+/* Make the split layout responsive */
+@media (max-width: 768px) {
+    .split-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .split-content::after {
+        width: 80%;
+        height: 1px;
+        left: 10%;
+        top: 50%;
+    }
+    
+    .timeline-split-item:first-child {
+        margin-bottom: 20px;
+        padding-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-split-item h3 {
+        font-size: 18px;
+    }
+}
