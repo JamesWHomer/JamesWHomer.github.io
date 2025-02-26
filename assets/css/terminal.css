@@ -263,7 +263,7 @@
     background-color: #FFFFFF;
     animation: blink 1.2s step-end infinite;
     position: absolute;
-    top: 4px;
+    top: 3px;
     left: 0;
     z-index: 5;
 }
