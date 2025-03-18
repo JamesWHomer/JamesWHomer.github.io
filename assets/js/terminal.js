@@ -85,7 +85,11 @@ document.addEventListener('DOMContentLoaded', function() {
             window.commandHistoryArray.push(command);
         }
         
-        switch(command.toLowerCase()) {
+        // Parse command and arguments
+        const args = command.trim().split(/\s+/);
+        const cmd = args[0].toLowerCase();
+        
+        switch(cmd) {
             case 'help':
                 output = 'Available commands:\n' +
                         'help - Display this help message\n' +
@@ -95,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         'contact - Show contact information\n' +
                         'ls - List portfolio sections\n' +
                         'cd [section] - Navigate to a section\n' +
+                        'cat [file] - Display file contents\n' +
                         'clear - Clear the terminal\n' +
                         'print - Print this webpage\n' +
                         'history - Show command history';
@@ -112,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         '🔄 Workflow: Git';
                 break;
             case 'ls':
-                output = 'home/\nexperience/\nskills/\ninterests/';
+                output = 'home/\nexperience/\nskills/\ninterests/\nskills.json\nprojects.json\ncontact.json\nabout.json';
                 break;
             case 'projects':
                 output = '1. University of Sydney Rocketry Team\n   - Ground control systems and telemetry software\n   - Real-time data visualization\n\n' +
@@ -140,23 +145,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 500);
                 break;
             case 'cd':
-                output = 'Usage: cd [section]\nAvailable sections: home, experience, skills, interests';
-                break;
-            case 'cd skills':
-                output = 'Navigating to: skills section';
-                document.getElementById('skills').scrollIntoView({ behavior: 'smooth' });
-                break;
-            case 'cd experience':
-                output = 'Navigating to: experience section';
-                document.getElementById('experience').scrollIntoView({ behavior: 'smooth' });
-                break;
-            case 'cd interests':
-                output = 'Navigating to: interests section';
-                document.getElementById('interests').scrollIntoView({ behavior: 'smooth' });
-                break;
-            case 'cd home':
-                output = 'Navigating to: home section';
-                document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+                if (args.length === 1) {
+                    output = 'Usage: cd [section]\nAvailable sections: home/, experience/, skills/, interests/';
+                } else {
+                    const section = args[1].toLowerCase();
+                    switch(section) {
+                        case 'skills':
+                        case 'skills/':
+                            output = 'Navigating to: skills/';
+                            document.getElementById('skills').scrollIntoView({ behavior: 'smooth' });
+                            break;
+                        case 'experience':
+                        case 'experience/':
+                            output = 'Navigating to: experience/';
+                            document.getElementById('experience').scrollIntoView({ behavior: 'smooth' });
+                            break;
+                        case 'interests':
+                        case 'interests/':
+                            output = 'Navigating to: interests/';
+                            document.getElementById('interests').scrollIntoView({ behavior: 'smooth' });
+                            break;
+                        case 'home':
+                        case 'home/':
+                            output = 'Navigating to: home/';
+                            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+                            break;
+                        default:
+                            output = `cd: directory not found: ${section}`;
+                            isError = true;
+                            break;
+                    }
+                }
                 break;
             case 'sudo':
             case 'sudo rm -rf /':
@@ -166,6 +185,32 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'exit':
             case 'quit':
                 output = 'This is just a browser window. Close the tab to exit.';
+                break;
+            case 'cat':
+                if (args.length === 1) {
+                    output = 'Usage: cat [file]\nDisplays the contents of a file.';
+                    isError = true;
+                } else {
+                    const filename = args[1].toLowerCase();
+                    switch(filename) {
+                        case 'skills.json':
+                            output = '{\n  "core": ["C++", "Rust", "Java", "Linux"],\n  "data": ["Python", "OpenAI API", "SQL", "Docker"],\n  "web": ["JavaScript", "HTML5", "CSS3", "React", "Node.js"],\n  "workflow": ["Git"]\n}';
+                            break;
+                        case 'projects.json':
+                            output = '[\n  {\n    "name": "University of Sydney Rocketry Team",\n    "details": [\n      "Ground control systems and telemetry software",\n      "Real-time data visualization"\n    ]\n  },\n  {\n    "name": "Personal Website",\n    "details": [\n      "Interactive terminal UI",\n      "Responsive design"\n    ]\n  },\n  {\n    "name": "Minecraft Plugins",\n    "details": [\n      "Java-based game extensions",\n      "Server administration tools"\n    ]\n  }\n]';
+                            break;
+                        case 'contact.json':
+                            output = '{\n  "email": "jameswatsonhomer@gmail.com",\n  "github": "https://github.com/JamesWHomer",\n  "linkedin": "https://www.linkedin.com/in/jameswatsonhomer/",\n  "twitter": "@JamesWHomer"\n}';
+                            break;
+                        case 'about.json':
+                            output = '{\n  "name": "James Watson Homer",\n  "title": "Software Engineer & Computer Science Student",\n  "university": "University of Sydney",\n  "location": "Sydney, Australia 🇦🇺",\n  "interests": ["technology", "music", "martial arts"]\n}';
+                            break;
+                        default:
+                            output = `cat: ${filename}: No such file or directory`;
+                            isError = true;
+                            break;
+                    }
+                }
                 break;
             default:
                 if (command.toLowerCase().startsWith('echo ')) {
