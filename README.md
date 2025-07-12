@@ -5,7 +5,7 @@ A modern, interactive portfolio website featuring an authentic terminal interfac
 ## Features
 
 - Clean, responsive design
-- Interactive terminal with 20+ Unix-like commands
+- Interactive terminal with 15 Unix-like commands
 - Timeline-based experience section
 - Skills visualization in JSON format
 - Contact information and social links
@@ -36,15 +36,15 @@ The interactive terminal supports the following commands:
 - `skills` - View technical skills
 - `projects` - View portfolio projects
 - `contact` - Show contact information
-- `ls/dir` - List portfolio sections
+- `ls` - List portfolio sections
 - `cd [section]` - Navigate to different sections
-- `pwd` - Show current location
-- `whoami` - Display user information
-- `date` - Show current date and time
-- `man [command]` - Display manual for command
 - `cat [file]` - Display file contents
+- `echo [text]` - Print text to the terminal
+- `sudo [command]` - Run a command with elevated (mock) privileges
+- `clear` - Clear the terminal
+- `print` - Print the webpage
 - `history` - Show command history
-- ... and many more!
+- `exit` / `quit` - Display exit instructions
 
 ## Setup and Deployment
 

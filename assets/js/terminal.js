@@ -126,17 +126,20 @@ document.addEventListener('DOMContentLoaded', function() {
         switch(cmd) {
             case 'help':
                 output = 'Available commands:\n' +
-                        'help - Display this help message\n' +
-                        'about - Learn about James\n' +
-                        'skills - View technical skills\n' +
-                        'projects - View portfolio projects\n' +
-                        'contact - Show contact information\n' +
-                        'ls - List portfolio sections\n' +
-                        'cd [section] - Navigate to a section\n' +
-                        'cat [file] - Display file contents\n' +
-                        'clear - Clear the terminal\n' +
-                        'print - Print this webpage\n' +
-                        'history - Show command history';
+                        'help               - Display this help message\n' +
+                        'about              - Learn about James\n' +
+                        'skills             - View technical skills\n' +
+                        'projects           - View portfolio projects\n' +
+                        'contact            - Show contact information\n' +
+                        'ls                 - List portfolio sections\n' +
+                        'cd [section]       - Navigate to a section\n' +
+                        'cat [file]         - Display file contents\n' +
+                        'echo [text]        - Print text to the terminal\n' +
+                        'sudo [command]     - Run a command with elevated (mock) privileges\n' +
+                        'clear              - Clear the terminal\n' +
+                        'print              - Print this webpage\n' +
+                        'history            - Show command history\n' +
+                        'exit | quit        - Display exit instructions';
                 break;
             case 'about':
                 output = 'James Watson Homer\n' +
