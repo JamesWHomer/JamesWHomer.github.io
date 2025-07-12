@@ -211,11 +211,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 break;
-            case 'sudo':
-            case 'sudo rm -rf /':
-                output = 'Nice try! Permission denied.';
-                isError = true;
+            case 'sudo': {
+                const sudoCommand = args.slice(1).join(' ');
+                if (sudoCommand === 'rm -rf /') {
+                    // Gag for the classic dangerous command
+                    output = 'Nice try! Permission denied.';
+                    isError = true;
+                } else if (!sudoCommand) {
+                    output = 'sudo: no command specified';
+                    isError = true;
+                } else {
+                    // Execute the underlying command without the sudo prefix
+                    processCommand(sudoCommand);
+                    return; // Skip further processing in this call
+                }
                 break;
+            }
             case 'exit':
             case 'quit':
                 output = 'This is just a browser window. Close the tab to exit.';
