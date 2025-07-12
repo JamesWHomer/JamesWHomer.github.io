@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const commandHistory = document.getElementById('command-history');
     const cursorElement = document.querySelector('.blink');
     
+    // Add history index tracker for arrow-key navigation
+    let historyIndex = 0;
+    
     // Make terminal clickable
     terminalBody.addEventListener('click', function() {
         terminalInput.focus();
@@ -30,6 +33,34 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Process commands on Enter
     terminalInput.addEventListener('keydown', function(event) {
+        // ↑ / ↓ command history navigation
+        if (event.key === 'ArrowUp') {
+            if (window.commandHistoryArray && window.commandHistoryArray.length) {
+                if (historyIndex > 0) {
+                    historyIndex--;
+                } else {
+                    historyIndex = 0;
+                }
+                terminalInput.value = window.commandHistoryArray[historyIndex] || '';
+                updateCursorPosition();
+            }
+            event.preventDefault();
+            return;
+        } else if (event.key === 'ArrowDown') {
+            if (window.commandHistoryArray && window.commandHistoryArray.length) {
+                if (historyIndex < window.commandHistoryArray.length - 1) {
+                    historyIndex++;
+                    terminalInput.value = window.commandHistoryArray[historyIndex];
+                } else {
+                    historyIndex = window.commandHistoryArray.length;
+                    terminalInput.value = '';
+                }
+                updateCursorPosition();
+            }
+            event.preventDefault();
+            return;
+        }
+        
         if (event.key === 'Enter') {
             const command = terminalInput.value.trim();
             processCommand(command);
@@ -84,6 +115,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             window.commandHistoryArray.push(command);
         }
+        
+        // Reset history index to the end of the history after storing the command
+        historyIndex = window.commandHistoryArray.length;
         
         // Parse command and arguments
         const args = command.trim().split(/\s+/);
