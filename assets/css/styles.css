@@ -22,12 +22,26 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-light) #f1f1f1;
 }
 
 html::-webkit-scrollbar {
-    display: none;
+    width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary-light), var(--primary-color));
+    border-radius: 999px;
+    border: 2px solid #f1f1f1;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
 }
 
 body {
@@ -37,12 +51,6 @@ body {
     background-color: var(--light-color);
     overflow-x: hidden;
     font-size: 1.1rem;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-body::-webkit-scrollbar {
-    display: none;
 }
 
 .container {
