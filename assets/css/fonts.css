@@ -1,0 +1,11 @@
+/*
+ * External font CSS from Google Fonts does not support stable SRI hashes.
+ * This stylesheet keeps typography local-first to avoid introducing
+ * non-pinnable third-party CSS dependencies.
+ */
+
+:root {
+    --font-sans-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-sans-secondary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-display-pixel: 'Press Start 2P', 'Courier New', monospace;
+}
