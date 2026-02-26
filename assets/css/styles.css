@@ -11,6 +11,7 @@
     --timeline-line: #e0e0e0;
     --timeline-dot: #000000;
     --navbar-bg: rgba(255, 255, 255, 0.9);
+    --scroll-offset: 96px;
 }
 
 * {
@@ -26,6 +27,12 @@ html {
     scrollbar-width: none;
 }
 
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
 html::-webkit-scrollbar {
     display: none;
 }
@@ -222,6 +229,7 @@ img {
 /* Section Styles */
 section {
     padding: 100px 0;
+    scroll-margin-top: var(--scroll-offset);
 }
 
 section:nth-child(even) {

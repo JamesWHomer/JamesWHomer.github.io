@@ -7,6 +7,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add history index tracker for arrow-key navigation
     let historyIndex = 0;
+
+    const scrollToElementWithOffset = window.scrollToElementWithOffset || function(targetElement) {
+        if (!targetElement) {
+            return;
+        }
+
+        const navbar = document.querySelector('.navbar');
+        const navbarOffset = navbar ? navbar.offsetHeight : 0;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const targetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+
+        window.scrollTo({
+            top: Math.max(targetTop, 0),
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+    };
     
     // Make terminal clickable
     terminalBody.addEventListener('click', function() {
@@ -190,22 +206,22 @@ document.addEventListener('DOMContentLoaded', function() {
                         case 'skills':
                         case 'skills/':
                             output = 'Navigating to: skills/';
-                            document.getElementById('skills').scrollIntoView({ behavior: 'smooth' });
+                            scrollToElementWithOffset(document.getElementById('skills'));
                             break;
                         case 'experience':
                         case 'experience/':
                             output = 'Navigating to: experience/';
-                            document.getElementById('experience').scrollIntoView({ behavior: 'smooth' });
+                            scrollToElementWithOffset(document.getElementById('experience'));
                             break;
                         case 'interests':
                         case 'interests/':
                             output = 'Navigating to: interests/';
-                            document.getElementById('interests').scrollIntoView({ behavior: 'smooth' });
+                            scrollToElementWithOffset(document.getElementById('interests'));
                             break;
                         case 'home':
                         case 'home/':
                             output = 'Navigating to: home/';
-                            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+                            scrollToElementWithOffset(document.getElementById('home'));
                             break;
                         default:
                             output = `cd: directory not found: ${section}`;

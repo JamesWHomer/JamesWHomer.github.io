@@ -4,6 +4,28 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function getNavbarOffset() {
+        const navbar = document.querySelector('.navbar');
+        return navbar ? navbar.offsetHeight : 0;
+    }
+
+    function scrollToElementWithOffset(targetElement) {
+        if (!targetElement) {
+            return;
+        }
+
+        const targetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - getNavbarOffset();
+
+        window.scrollTo({
+            top: Math.max(targetTop, 0),
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+    }
+
+    window.scrollToElementWithOffset = scrollToElementWithOffset;
+
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -13,9 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
+                scrollToElementWithOffset(targetElement);
             }
         });
     });
