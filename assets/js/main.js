@@ -4,6 +4,11 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    const currentYearElement = document.getElementById('current-year');
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
+
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
