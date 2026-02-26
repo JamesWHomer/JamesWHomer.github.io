@@ -7,6 +7,111 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add history index tracker for arrow-key navigation
     let historyIndex = 0;
+
+    const terminalData = {
+        profile: {
+            name: 'James Watson Homer',
+            title: 'Software Engineer & Computer Science Student',
+            university: 'University of Sydney',
+            location: 'Sydney, Australia 🇦🇺',
+            interests: ['AI research', 'mathematics', 'rocketry']
+        },
+        skills: {
+            core_systems: ['C++', 'Rust', 'Java', 'Linux'],
+            data_automation: ['Python', 'OpenAI API', 'SQL', 'Docker'],
+            web_development: ['JavaScript', 'HTML5', 'CSS3'],
+            workflow: ['Git']
+        },
+        contact: {
+            email: 'jameswatsonhomer@gmail.com',
+            github: 'https://github.com/JamesWHomer',
+            linkedin: 'https://www.linkedin.com/in/jameswatsonhomer/'
+        },
+        projects: [
+            {
+                name: 'University of Sydney Rocketry Team',
+                details: [
+                    'Ground control systems and telemetry software',
+                    'Real-time data visualization'
+                ]
+            },
+            {
+                name: 'Personal Website',
+                details: ['Interactive terminal UI', 'Responsive design']
+            },
+            {
+                name: 'Minecraft Plugins',
+                details: ['Java-based game extensions', 'Server administration tools']
+            }
+        ]
+    };
+
+    const terminalViews = {
+        about: terminalData.profile,
+        skills: terminalData.skills,
+        contact: terminalData.contact,
+        aboutJson: terminalData.profile,
+        skillsJson: terminalData.skills,
+        contactJson: terminalData.contact,
+        projectsJson: terminalData.projects
+    };
+
+    function runConsistencyCheck() {
+        const sameAbout = Object.is(terminalViews.about, terminalViews.aboutJson);
+        const sameSkills = Object.is(terminalViews.skills, terminalViews.skillsJson);
+        const sameContact = Object.is(terminalViews.contact, terminalViews.contactJson);
+
+        return sameAbout && sameSkills && sameContact;
+    }
+
+    function renderHelp() {
+        return 'Available commands:\n' +
+                'help               - Display this help message\n' +
+                'about              - Learn about James\n' +
+                'skills             - View technical skills\n' +
+                'projects           - View portfolio projects\n' +
+                'contact            - Show contact information\n' +
+                'ls                 - List portfolio sections\n' +
+                'cd [section]       - Navigate to a section\n' +
+                'cat [file]         - Display file contents\n' +
+                'echo [text]        - Print text to the terminal\n' +
+                'sudo [command]     - Run a command with elevated (mock) privileges\n' +
+                'clear              - Clear the terminal\n' +
+                'print              - Print this webpage\n' +
+                'history            - Show command history\n' +
+                'exit | quit        - Display exit instructions';
+    }
+
+    function renderAbout() {
+        const { name, title, university, location, interests } = terminalViews.about;
+        return `${name}\n${title} at the ${university}\nBased in ${location}\nInterests: ${interests.join(', ')}`;
+    }
+
+    function renderSkills() {
+        const { core_systems, data_automation, web_development, workflow } = terminalViews.skills;
+        return '🛠️ Core Systems: ' + core_systems.join(', ') + '\n' +
+                '📊 Data & Automation: ' + data_automation.join(', ') + '\n' +
+                '🌐 Web Development: ' + web_development.join(', ') + '\n' +
+                '🔄 Workflow: ' + workflow.join(', ');
+    }
+
+    function renderProjects() {
+        return terminalData.projects
+            .map((project, index) => {
+                const details = project.details.map((detail) => `   - ${detail}`).join('\n');
+                return `${index + 1}. ${project.name}\n${details}`;
+            })
+            .join('\n\n');
+    }
+
+    function renderContact() {
+        const { email, github, linkedin } = terminalViews.contact;
+        return `Email: ${email}\nGitHub: ${github}\nLinkedIn: ${linkedin}`;
+    }
+
+    function renderJson(dataset) {
+        return JSON.stringify(dataset, null, 2);
+    }
     
     // Make terminal clickable
     terminalBody.addEventListener('click', function() {
@@ -122,47 +227,30 @@ document.addEventListener('DOMContentLoaded', function() {
         // Parse command and arguments
         const args = command.trim().split(/\s+/);
         const cmd = args[0].toLowerCase();
+
+        if (!runConsistencyCheck()) {
+            output = 'Data consistency error: terminal datasets are out of sync.';
+            isError = true;
+        } else {
         
         switch(cmd) {
             case 'help':
-                output = 'Available commands:\n' +
-                        'help               - Display this help message\n' +
-                        'about              - Learn about James\n' +
-                        'skills             - View technical skills\n' +
-                        'projects           - View portfolio projects\n' +
-                        'contact            - Show contact information\n' +
-                        'ls                 - List portfolio sections\n' +
-                        'cd [section]       - Navigate to a section\n' +
-                        'cat [file]         - Display file contents\n' +
-                        'echo [text]        - Print text to the terminal\n' +
-                        'sudo [command]     - Run a command with elevated (mock) privileges\n' +
-                        'clear              - Clear the terminal\n' +
-                        'print              - Print this webpage\n' +
-                        'history            - Show command history\n' +
-                        'exit | quit        - Display exit instructions';
+                output = renderHelp();
                 break;
             case 'about':
-                output = 'James Watson Homer\n' +
-                        'Software Engineer & Computer Science Student at the University of Sydney\n' +
-                        'Born in Sydney, Australia 🇦🇺\n' +
-                        'Passionate about technology, music, and martial arts';
+                output = renderAbout();
                 break;
             case 'skills':
-                output = '🛠️ Core Systems: C++, Rust, Java, Linux\n' +
-                        '📊 Data & Automation: Python, OpenAI API, SQL, Docker\n' +
-                        '🌐 Web Development: JavaScript, HTML5, CSS3, React, Node.js\n' +
-                        '🔄 Workflow: Git';
+                output = renderSkills();
                 break;
             case 'ls':
                 output = 'home/\nexperience/\nskills/\ninterests/\nskills.json\nprojects.json\ncontact.json\nabout.json';
                 break;
             case 'projects':
-                output = '1. University of Sydney Rocketry Team\n   - Ground control systems and telemetry software\n   - Real-time data visualization\n\n' +
-                        '2. Personal Website\n   - Interactive terminal UI\n   - Responsive design\n\n' +
-                        '3. Minecraft Plugins\n   - Java-based game extensions\n   - Server administration tools';
+                output = renderProjects();
                 break;
             case 'contact':
-                output = 'Email: jameswatsonhomer@gmail.com\nGitHub: https://github.com/JamesWHomer\nLinkedIn: https://www.linkedin.com/in/jameswatsonhomer/\nTwitter: @JamesWHomer';
+                output = renderContact();
                 break;
             case 'history':
                 if (window.commandHistoryArray && window.commandHistoryArray.length > 0) {
@@ -242,16 +330,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     const filename = args[1].toLowerCase();
                     switch(filename) {
                         case 'skills.json':
-                            output = '{\n  "core": ["C++", "Rust", "Java", "Linux"],\n  "data": ["Python", "OpenAI API", "SQL", "Docker"],\n  "web": ["JavaScript", "HTML5", "CSS3", "React", "Node.js"],\n  "workflow": ["Git"]\n}';
+                            output = renderJson(terminalViews.skillsJson);
                             break;
                         case 'projects.json':
-                            output = '[\n  {\n    "name": "University of Sydney Rocketry Team",\n    "details": [\n      "Ground control systems and telemetry software",\n      "Real-time data visualization"\n    ]\n  },\n  {\n    "name": "Personal Website",\n    "details": [\n      "Interactive terminal UI",\n      "Responsive design"\n    ]\n  },\n  {\n    "name": "Minecraft Plugins",\n    "details": [\n      "Java-based game extensions",\n      "Server administration tools"\n    ]\n  }\n]';
+                            output = renderJson(terminalViews.projectsJson);
                             break;
                         case 'contact.json':
-                            output = '{\n  "email": "jameswatsonhomer@gmail.com",\n  "github": "https://github.com/JamesWHomer",\n  "linkedin": "https://www.linkedin.com/in/jameswatsonhomer/",\n  "twitter": "@JamesWHomer"\n}';
+                            output = renderJson(terminalViews.contactJson);
                             break;
                         case 'about.json':
-                            output = '{\n  "name": "James Watson Homer",\n  "title": "Software Engineer & Computer Science Student",\n  "university": "University of Sydney",\n  "location": "Sydney, Australia 🇦🇺",\n  "interests": ["technology", "music", "martial arts"]\n}';
+                            output = renderJson(terminalViews.aboutJson);
                             break;
                         default:
                             output = `cat: ${filename}: No such file or directory`;
@@ -269,6 +357,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     return;
                 }
+        }
         }
         
         // Create and append output
