@@ -16,11 +16,31 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo pixel-font">JH</div>
-            <ul class="nav-links">
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+                aria-label="Toggle navigation menu"
+            >
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+            </button>
+            <ul class="nav-links nav-links-desktop">
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#interests">Interests</a></li>
             </ul>
+        </div>
+        <div id="mobile-menu" class="mobile-menu" hidden>
+            <div class="container">
+                <ul class="nav-links nav-links-mobile">
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#interests">Interests</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 

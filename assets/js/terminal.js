@@ -5,24 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const commandHistory = document.getElementById('command-history');
     const cursorElement = document.querySelector('.blink');
     
+    // Ensure command history always starts as an array
+    window.commandHistoryArray = Array.isArray(window.commandHistoryArray)
+        ? window.commandHistoryArray
+        : [];
+
     // Add history index tracker for arrow-key navigation
-    let historyIndex = 0;
-
-    const scrollToElementWithOffset = window.scrollToElementWithOffset || function(targetElement) {
-        if (!targetElement) {
-            return;
-        }
-
-        const navbar = document.querySelector('.navbar');
-        const navbarOffset = navbar ? navbar.offsetHeight : 0;
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const targetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
-
-        window.scrollTo({
-            top: Math.max(targetTop, 0),
-            behavior: prefersReducedMotion ? 'auto' : 'smooth'
-        });
-    };
+    let historyIndex = window.commandHistoryArray.length || 0;
     
     // Make terminal clickable
     terminalBody.addEventListener('click', function() {
@@ -51,19 +40,21 @@ document.addEventListener('DOMContentLoaded', function() {
     terminalInput.addEventListener('keydown', function(event) {
         // ↑ / ↓ command history navigation
         if (event.key === 'ArrowUp') {
-            if (window.commandHistoryArray && window.commandHistoryArray.length) {
+            if (window.commandHistoryArray.length > 0) {
                 if (historyIndex > 0) {
                     historyIndex--;
                 } else {
                     historyIndex = 0;
                 }
                 terminalInput.value = window.commandHistoryArray[historyIndex] || '';
-                updateCursorPosition();
+            } else {
+                historyIndex = 0;
             }
+            updateCursorPosition();
             event.preventDefault();
             return;
         } else if (event.key === 'ArrowDown') {
-            if (window.commandHistoryArray && window.commandHistoryArray.length) {
+            if (window.commandHistoryArray.length > 0) {
                 if (historyIndex < window.commandHistoryArray.length - 1) {
                     historyIndex++;
                     terminalInput.value = window.commandHistoryArray[historyIndex];
@@ -71,8 +62,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     historyIndex = window.commandHistoryArray.length;
                     terminalInput.value = '';
                 }
-                updateCursorPosition();
+            } else {
+                historyIndex = 0;
+                terminalInput.value = '';
             }
+            updateCursorPosition();
             event.preventDefault();
             return;
         }
@@ -114,6 +108,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function processCommand(command) {
+        if (!command) {
+            historyIndex = window.commandHistoryArray.length || 0;
+            return;
+        }
+
         // Create command line element
         const cmdLine = document.createElement('div');
         cmdLine.className = 'command-line';
@@ -124,16 +123,11 @@ document.addEventListener('DOMContentLoaded', function() {
         let output;
         let isError = false;
         
-        // Store commands in history if not empty
-        if (command) {
-            if (!window.commandHistoryArray) {
-                window.commandHistoryArray = [];
-            }
-            window.commandHistoryArray.push(command);
-        }
+        // Store commands in history
+        window.commandHistoryArray.push(command);
         
         // Reset history index to the end of the history after storing the command
-        historyIndex = window.commandHistoryArray.length;
+        historyIndex = window.commandHistoryArray.length || 0;
         
         // Parse command and arguments
         const args = command.trim().split(/\s+/);
