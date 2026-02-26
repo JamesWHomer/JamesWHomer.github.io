@@ -7,12 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
             const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
+            const targetElement = targetId ? document.querySelector(targetId) : null;
+
             if (targetElement) {
+                e.preventDefault();
                 targetElement.scrollIntoView({
                     behavior: 'smooth'
                 });
@@ -20,25 +19,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add active class to nav items on scroll
-    window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
 
+    function updateActiveNavLink() {
         let currentSectionId = '';
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
+
             if (window.pageYOffset >= sectionTop - 200 && window.pageYOffset < sectionTop + sectionHeight - 200) {
-                currentSectionId = section.getAttribute('id');
+                currentSectionId = section.getAttribute('id') || '';
             }
         });
 
         navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSectionId}`) {
-                link.classList.add('active');
-            }
+            const isCurrent = link.getAttribute('href') === `#${currentSectionId}`;
+            link.classList.toggle('active', isCurrent);
         });
-    });
+    }
+
+    window.addEventListener('scroll', updateActiveNavLink);
+    updateActiveNavLink();
 });
