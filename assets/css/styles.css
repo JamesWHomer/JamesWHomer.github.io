@@ -302,15 +302,16 @@ section:nth-child(odd) {
 
 /* Experience Section */
 .timeline {
+    --line-offset: 15px;
+    --content-gap: 20px;
     position: relative;
-    padding-left: 30px;
-    margin-left: 15px;
+    padding-left: calc(var(--line-offset) + var(--content-gap));
 }
 
 .timeline:before {
     content: '';
     position: absolute;
-    left: 0;
+    left: var(--line-offset);
     top: 0;
     height: 100%;
     width: 1px;
@@ -328,12 +329,13 @@ section:nth-child(odd) {
 
 .timeline-dot {
     position: absolute;
-    left: -34px;
-    top: 0;
+    left: calc(-1 * var(--content-gap));
+    top: 5px;
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background-color: var(--timeline-dot);
+    transform: translateX(-50%);
 }
 
 .timeline-date {
@@ -638,11 +640,8 @@ section:nth-child(odd) {
     }
     
     .timeline {
-        padding-left: 25px;
-    }
-    
-    .timeline-dot {
-        left: -31px;
+        --line-offset: 12px;
+        --content-gap: 16px;
     }
     
     .timeline-content {
