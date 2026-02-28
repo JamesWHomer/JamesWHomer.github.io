@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let historyIndex = 0;
 
     const sections = ['home', 'experience', 'skills', 'interests'];
-    const commandNames = ['help', 'about', 'ls', 'cd', 'clear', 'sudo'];
 
     const commands = {
         help: () => ({
@@ -68,6 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return null;
         }
     };
+
+    const commandNames = Object.keys(commands);
 
     function runCommand(cmd, args) {
         const normalized = cmd.toLowerCase().replace(/^\.\//, '');
