@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const cursorElement = document.querySelector('.blink');
     
     // Add history index tracker for arrow-key navigation
+    window.commandHistoryArray = window.commandHistoryArray || [];
     let historyIndex = 0;
     
     // Make terminal clickable
@@ -98,25 +99,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function processCommand(command) {
-        // Create command line element
+        if (!command) return;
+
         const cmdLine = document.createElement('div');
         cmdLine.className = 'command-line';
         cmdLine.innerHTML = `<span class="prompt">james@homer:~$</span> <span class="command">${escapeHTML(command)}</span>`;
         commandHistory.appendChild(cmdLine);
         
-        // Process different commands
         let output;
         let isError = false;
         
-        // Store commands in history if not empty
-        if (command) {
-            if (!window.commandHistoryArray) {
-                window.commandHistoryArray = [];
-            }
-            window.commandHistoryArray.push(command);
-        }
-        
-        // Reset history index to the end of the history after storing the command
+        window.commandHistoryArray.push(command);
         historyIndex = window.commandHistoryArray.length;
         
         // Parse command and arguments
@@ -150,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'skills':
                 output = '🛠️ Core Systems: C++, Rust, Java, Linux\n' +
                         '📊 Data & Automation: Python, OpenAI API, SQL, Docker\n' +
-                        '🌐 Web Development: JavaScript, HTML5, CSS3, React, Node.js\n' +
+                        '🌐 Web Development: JavaScript, HTML5, CSS3\n' +
                         '🔄 Workflow: Git';
                 break;
             case 'ls':
@@ -242,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const filename = args[1].toLowerCase();
                     switch(filename) {
                         case 'skills.json':
-                            output = '{\n  "core": ["C++", "Rust", "Java", "Linux"],\n  "data": ["Python", "OpenAI API", "SQL", "Docker"],\n  "web": ["JavaScript", "HTML5", "CSS3", "React", "Node.js"],\n  "workflow": ["Git"]\n}';
+                            output = '{\n  "core": ["C++", "Rust", "Java", "Linux"],\n  "data": ["Python", "OpenAI API", "SQL", "Docker"],\n  "web": ["JavaScript", "HTML5", "CSS3"],\n  "workflow": ["Git"]\n}';
                             break;
                         case 'projects.json':
                             output = '[\n  {\n    "name": "University of Sydney Rocketry Team",\n    "details": [\n      "Ground control systems and telemetry software",\n      "Real-time data visualization"\n    ]\n  },\n  {\n    "name": "Personal Website",\n    "details": [\n      "Interactive terminal UI",\n      "Responsive design"\n    ]\n  },\n  {\n    "name": "Minecraft Plugins",\n    "details": [\n      "Java-based game extensions",\n      "Server administration tools"\n    ]\n  }\n]';
@@ -263,11 +256,9 @@ document.addEventListener('DOMContentLoaded', function() {
             default:
                 if (command.toLowerCase().startsWith('echo ')) {
                     output = command.substring(5);
-                } else if (command) {
+                } else {
                     output = `Command not found: ${command}\nType 'help' to see available commands.`;
                     isError = true;
-                } else {
-                    return;
                 }
         }
         
