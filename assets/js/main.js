@@ -52,26 +52,20 @@ document.addEventListener('DOMContentLoaded', function() {
         fadeInObserver.observe(element);
     });
 
+    // Highlight active nav link based on visible section
+    const navLinksAll = document.querySelectorAll('.nav-links a');
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinksAll.forEach(link => {
+                    link.classList.toggle('active',
+                        link.getAttribute('href') === `#${entry.target.id}`);
+                });
+            }
+        });
+    }, { rootMargin: '-80px 0px -60% 0px' });
+
+    document.querySelectorAll('section').forEach(section => {
+        sectionObserver.observe(section);
+    });
 });
-
-// Add active class to nav items on scroll
-window.addEventListener('scroll', function() {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    
-    let currentSectionId = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.pageYOffset >= sectionTop - 200 && window.pageYOffset < sectionTop + sectionHeight - 200) {
-            currentSectionId = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSectionId}`) {
-            link.classList.add('active');
-        }
-    });
-}); 
