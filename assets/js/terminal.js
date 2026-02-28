@@ -98,19 +98,21 @@ document.addEventListener('DOMContentLoaded', function() {
         cursorElement.style.left = `${promptWidth + inputWidth + offset}px`;
     }
     
-    function processCommand(command) {
+    function processCommand(command, skipPrompt) {
         if (!command) return;
 
-        const cmdLine = document.createElement('div');
-        cmdLine.className = 'command-line';
-        cmdLine.innerHTML = `<span class="prompt">james@homer:~$</span> <span class="command">${escapeHTML(command)}</span>`;
-        commandHistory.appendChild(cmdLine);
+        if (!skipPrompt) {
+            const cmdLine = document.createElement('div');
+            cmdLine.className = 'command-line';
+            cmdLine.innerHTML = `<span class="prompt">james@homer:~$</span> <span class="command">${escapeHTML(command)}</span>`;
+            commandHistory.appendChild(cmdLine);
+
+            window.commandHistoryArray.push(command);
+            historyIndex = window.commandHistoryArray.length;
+        }
         
         let output;
         let isError = false;
-        
-        window.commandHistoryArray.push(command);
-        historyIndex = window.commandHistoryArray.length;
         
         // Parse command and arguments
         const args = command.trim().split(/\s+/);
@@ -150,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 output = 'home/\nexperience/\nskills/\ninterests/\nskills.json\nprojects.json\ncontact.json\nabout.json';
                 break;
             case 'projects':
-                output = '1. University of Sydney Rocketry Team\n   - Ground control systems and telemetry software\n   - Real-time data visualization\n\n' +
+                output = '1. USYD Rocketry Team\n   - Airbrake integration into Ironbark trajectory simulation\n   - Ground control tooling and launch controller design\n\n' +
                         '2. Personal Website\n   - Interactive terminal UI\n   - Responsive design\n\n' +
                         '3. Minecraft Plugins\n   - Java-based game extensions\n   - Server administration tools';
                 break;
@@ -217,9 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     output = 'sudo: no command specified';
                     isError = true;
                 } else {
-                    // Execute the underlying command without the sudo prefix
-                    processCommand(sudoCommand);
-                    return; // Skip further processing in this call
+                    processCommand(sudoCommand, true);
+                    return;
                 }
                 break;
             }
@@ -238,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             output = '{\n  "core": ["C++", "Rust", "Java", "Linux"],\n  "data": ["Python", "OpenAI API", "SQL", "Docker"],\n  "web": ["JavaScript", "HTML5", "CSS3"],\n  "workflow": ["Git"]\n}';
                             break;
                         case 'projects.json':
-                            output = '[\n  {\n    "name": "University of Sydney Rocketry Team",\n    "details": [\n      "Ground control systems and telemetry software",\n      "Real-time data visualization"\n    ]\n  },\n  {\n    "name": "Personal Website",\n    "details": [\n      "Interactive terminal UI",\n      "Responsive design"\n    ]\n  },\n  {\n    "name": "Minecraft Plugins",\n    "details": [\n      "Java-based game extensions",\n      "Server administration tools"\n    ]\n  }\n]';
+                            output = '[\n  {\n    "name": "USYD Rocketry Team",\n    "details": [\n      "Airbrake integration into Ironbark trajectory simulation",\n      "Ground control tooling and launch controller design"\n    ]\n  },\n  {\n    "name": "Personal Website",\n    "details": [\n      "Interactive terminal UI",\n      "Responsive design"\n    ]\n  },\n  {\n    "name": "Minecraft Plugins",\n    "details": [\n      "Java-based game extensions",\n      "Server administration tools"\n    ]\n  }\n]';
                             break;
                         case 'contact.json':
                             output = '{\n  "email": "jameswatsonhomer@gmail.com",\n  "github": "https://github.com/JamesWHomer",\n  "linkedin": "https://www.linkedin.com/in/jameswatsonhomer/",\n  "twitter": "@JamesWHomer"\n}';
