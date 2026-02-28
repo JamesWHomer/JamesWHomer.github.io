@@ -254,11 +254,15 @@ img {
 }
 
 /* Section Styles */
+section, .hero {
+    scroll-margin-top: 80px;
+}
+
 section {
     padding: 100px 0;
 }
 
-section:nth-child(even) {
+section:nth-child(odd) {
     background-color: var(--section-bg);
 }
 
