@@ -121,47 +121,12 @@
                 </div>
                 
                 <div class="terminal-body">
-                    <div class="command-line">
+                    <div id="intro-command" class="command-line" style="display:none">
                         <span class="prompt">james@homer:~$</span> 
-                        <span class="command">cat skills.json</span>
+                        <span class="command"></span>
                     </div>
                     
-                    <div class="output">
-                        <div class="code-block">
-                            <div class="line"><span class="bracket">{</span></div>
-                            <div class="line indent"><span class="key">"core_systems"</span><span class="colon">:</span> <span class="bracket">{</span></div>
-                            <div class="line double-indent"><span class="key">"C++"</span><span class="colon">:</span> <span class="value">"System programming, Data structures, Algorithms"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"Rust"</span><span class="colon">:</span> <span class="value">"Memory safety, Systems programming, Performance"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"Java"</span><span class="colon">:</span> <span class="value">"Plugin development, OOP, Android apps"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"Linux"</span><span class="colon">:</span> <span class="value">"Shell scripting, System administration"</span></div>
-                            <div class="line indent"><span class="bracket">}</span><span class="comma">,</span></div>
-                            
-                            <div class="line indent"><span class="key">"data_automation"</span><span class="colon">:</span> <span class="bracket">{</span></div>
-                            <div class="line double-indent"><span class="key">"Python"</span><span class="colon">:</span> <span class="value">"Data analysis, Automation, Scripting"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"OpenAI API"</span><span class="colon">:</span> <span class="value">"LLM integration, AI assistants, Prompt engineering"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"SQL"</span><span class="colon">:</span> <span class="value">"Database design, Queries, Optimization"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"Docker"</span><span class="colon">:</span> <span class="value">"Containerization, Deployment"</span></div>
-                            <div class="line indent"><span class="bracket">}</span><span class="comma">,</span></div>
-                            
-                            <div class="line indent"><span class="key">"web_development"</span><span class="colon">:</span> <span class="bracket">{</span></div>
-                            <div class="line double-indent"><span class="key">"JavaScript"</span><span class="colon">:</span> <span class="value">"Web development, DOM manipulation"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"HTML5"</span><span class="colon">:</span> <span class="value">"Semantic markup, Accessibility"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"CSS3"</span><span class="colon">:</span> <span class="value">"Responsive design, Flexbox, Grid"</span></div>
-                            <div class="line indent"><span class="bracket">}</span><span class="comma">,</span></div>
-                            
-                            <div class="line indent"><span class="key">"workflow"</span><span class="colon">:</span> <span class="bracket">{</span></div>
-                            <div class="line double-indent"><span class="key">"Git"</span><span class="colon">:</span> <span class="value">"Version control, Collaboration, CI/CD"</span></div>
-                            <div class="line indent"><span class="bracket">}</span></div>
-                            <div class="line"><span class="bracket">}</span></div>
-                        </div>
-                    </div>
-                    
-                    <div class="command-line">
-                        <span class="prompt">james@homer:~$</span> 
-                        <span class="command">./tech-stack.sh</span>
-                    </div>
-                    
-                    <div class="output-analysis">
+                    <div id="intro-output" class="output-analysis" style="display:none">
                         <div class="tech-stack-line">
                             <div class="tech-stack-label">Core Systems:</div>
                             <div class="tech-stack-items">
@@ -205,7 +170,7 @@
                     </div>
                     
                     <div class="terminal-commands">
-                        Try commands: help, ls, cd [section], skills
+                        Try commands: help, about, ls, cd [section]
                     </div>
                 </div>
             </div>
