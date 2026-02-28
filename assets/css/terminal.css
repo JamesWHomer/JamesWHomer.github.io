@@ -5,7 +5,7 @@
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-    margin: 50px auto;
+    margin: 20px auto 0;
     max-width: 900px;
     border: 1px solid #333333;
 }
@@ -16,6 +16,14 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid #333333;
+}
+
+.terminal-header::after {
+    content: '';
+    display: flex;
+    gap: 8px;
+    margin-left: 18px;
+    width: calc(3 * 12px + 2 * 8px);
 }
 
 .terminal-controls {
@@ -125,6 +133,18 @@
     line-height: 1.4;
 }
 
+.command-output a {
+    color: #6CB6FF;
+    text-decoration: underline;
+    text-decoration-color: rgba(108, 182, 255, 0.4);
+    text-underline-offset: 2px;
+}
+
+.command-output a:hover {
+    color: #9DD0FF;
+    text-decoration-color: rgba(108, 182, 255, 0.8);
+}
+
 .command-line {
     margin-bottom: 18px;
     display: flex;
@@ -135,73 +155,13 @@
     color: #FFFFFF;
 }
 
-.output {
-    margin-bottom: 35px;
-    padding-left: 15px;
-    border-left: 1px solid #444444;
-}
-
 .output-analysis {
-    margin-bottom: 35px;
+    margin-bottom: 24px;
     padding-left: 15px;
     border-left: 1px solid #444444;
     line-height: 1.8;
 }
 
-.code-block {
-    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-    margin-bottom: 20px;
-    line-height: 1.8;
-}
-
-.line {
-    margin-bottom: 6px;
-    font-size: 16px;
-    display: block;
-    position: relative;
-}
-
-.line:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-.indent {
-    padding-left: 25px;
-}
-
-.double-indent {
-    padding-left: 50px;
-}
-
-.key {
-    color: #4EC9B0;
-}
-
-.value {
-    color: #CE9178;
-    word-break: normal;
-    overflow-wrap: break-word;
-}
-
-.colon, .comma {
-    color: #D4D4D4;
-}
-
-.bracket {
-    color: #D4D4D4;
-}
-
-.skill-highlight {
-    display: inline-block;
-    background-color: rgba(77, 151, 255, 0.15);
-    transition: all 0.3s ease;
-    padding: 0 4px;
-    border-radius: 2px;
-}
-
-.skill-highlight:hover {
-    background-color: rgba(77, 151, 255, 0.3);
-}
 
 .tech-stack-line {
     margin-bottom: 16px;
@@ -281,18 +241,6 @@
     .terminal-body {
         padding: 20px;
     }
-    
-    .line {
-        font-size: 14px;
-    }
-    
-    .indent {
-        padding-left: 20px;
-    }
-    
-    .double-indent {
-        padding-left: 40px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -303,17 +251,5 @@
     .terminal-body {
         padding: 16px;
         font-size: 12px;
-    }
-    
-    .line {
-        font-size: 12px;
-    }
-    
-    .indent {
-        padding-left: 15px;
-    }
-    
-    .double-indent {
-        padding-left: 30px;
     }
 } 

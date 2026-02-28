@@ -1,308 +1,253 @@
-// Interactive Terminal
 document.addEventListener('DOMContentLoaded', function() {
     const terminalBody = document.querySelector('.terminal-body');
     const terminalInput = document.querySelector('.interactive-input');
     const commandHistory = document.getElementById('command-history');
     const cursorElement = document.querySelector('.blink');
-    
-    // Add history index tracker for arrow-key navigation
+
+    const history = [];
     let historyIndex = 0;
-    
-    // Make terminal clickable
-    terminalBody.addEventListener('click', function() {
-        terminalInput.focus();
-        terminalBody.classList.add('focused');
-    });
-    
-    // Remove focus indicator when clicking elsewhere
-    document.addEventListener('click', function(event) {
-        if (!terminalBody.contains(event.target)) {
-            terminalBody.classList.remove('focused');
-        }
-    });
-    
-    // Focus input on terminal click
-    terminalInput.addEventListener('focus', function() {
-        cursorElement.style.display = 'inline-block';
-    });
-    
-    // Hide system cursor when typing in the input
-    terminalInput.addEventListener('blur', function() {
-        cursorElement.style.display = 'none';
-    });
-    
-    // Process commands on Enter
-    terminalInput.addEventListener('keydown', function(event) {
-        // ↑ / ↓ command history navigation
-        if (event.key === 'ArrowUp') {
-            if (window.commandHistoryArray && window.commandHistoryArray.length) {
-                if (historyIndex > 0) {
-                    historyIndex--;
-                } else {
-                    historyIndex = 0;
-                }
-                terminalInput.value = window.commandHistoryArray[historyIndex] || '';
-                updateCursorPosition();
+
+    const sections = ['home', 'experience', 'skills', 'interests'];
+    const commandNames = ['help', 'about', 'ls', 'cd', 'clear', 'sudo'];
+
+    const commands = {
+        help: () => ({
+            text: 'Available commands:\n' +
+                  'help             - Display this help message\n' +
+                  'about            - Learn about James\n' +
+                  'ls               - List portfolio sections\n' +
+                  'cd [section]     - Navigate to a section\n' +
+                  'clear            - Clear the terminal'
+        }),
+        about: () => ({
+            html: 'James Watson Homer<br>' +
+                  'Software Engineer &amp; Computer Science Student at the University of Sydney<br>' +
+                  'Born in Sydney, Australia<br><br>' +
+                  'Email:    <a href="mailto:jameswatsonhomer@gmail.com" target="_blank" rel="noopener">jameswatsonhomer@gmail.com</a><br>' +
+                  'GitHub:   <a href="https://github.com/JamesWHomer" target="_blank" rel="noopener">github.com/JamesWHomer</a><br>' +
+                  'LinkedIn: <a href="https://www.linkedin.com/in/jameswatsonhomer/" target="_blank" rel="noopener">linkedin.com/in/jameswatsonhomer</a>'
+        }),
+        ls: () => ({
+            text: sections.map(s => s + '/').join('\n') + '\ntech-stack.sh'
+        }),
+        cd: (args) => {
+            if (args.length === 0) {
+                return { text: 'Usage: cd [section]\nAvailable: ' + sections.join(', ') };
             }
-            event.preventDefault();
-            return;
-        } else if (event.key === 'ArrowDown') {
-            if (window.commandHistoryArray && window.commandHistoryArray.length) {
-                if (historyIndex < window.commandHistoryArray.length - 1) {
-                    historyIndex++;
-                    terminalInput.value = window.commandHistoryArray[historyIndex];
-                } else {
-                    historyIndex = window.commandHistoryArray.length;
-                    terminalInput.value = '';
-                }
-                updateCursorPosition();
+            const target = args[0].replace(/\/$/, '').toLowerCase();
+            if (sections.includes(target)) {
+                document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
+                return { text: `Navigating to: ${target}/` };
             }
-            event.preventDefault();
-            return;
+            return { text: `cd: directory not found: ${args[0]}`, error: true };
+        },
+        sudo: (args) => {
+            if (args.join(' ') === 'rm -rf /') {
+                return { text: 'Nice try! Permission denied.', error: true };
+            }
+            if (args.length === 0) {
+                return { text: 'sudo: no command specified', error: true };
+            }
+            return runCommand(args[0], args.slice(1));
+        },
+        whoami: () => ({
+            text: 'james'
+        }),
+        date: () => ({
+            text: new Date().toString()
+        }),
+        'tech-stack.sh': () => ({
+            text: 'Core Systems:       C++, Rust, Java, Linux\n' +
+                  'Data & Automation:  Python, OpenAI API, SQL, Docker\n' +
+                  'Web Development:    JavaScript, HTML5, CSS3\n' +
+                  'Workflow:           Git'
+        }),
+        clear: () => {
+            commandHistory.innerHTML = '';
+            document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
+            return null;
         }
-        
-        if (event.key === 'Enter') {
-            const command = terminalInput.value.trim();
-            processCommand(command);
-            terminalInput.value = '';
+    };
+
+    function runCommand(cmd, args) {
+        const normalized = cmd.toLowerCase().replace(/^\.\//, '');
+        const handler = commands[normalized];
+        if (!handler) {
+            return { text: `Command not found: ${cmd}\nType 'help' to see available commands.`, error: true };
         }
-        
-        // Position cursor after input text
-        updateCursorPosition();
-    });
-    
-    // Update cursor position on input
-    terminalInput.addEventListener('input', updateCursorPosition);
-    
-    function updateCursorPosition() {
-        // Get the prompt width
-        const promptElement = document.querySelector('.interactive-line .prompt');
-        const promptWidth = promptElement.getBoundingClientRect().width;
-        
-        // Using a temp element to measure input text width
-        const tempSpan = document.createElement('span');
-        tempSpan.style.visibility = 'hidden';
-        tempSpan.style.position = 'absolute';
-        tempSpan.style.whiteSpace = 'pre';
-        tempSpan.style.font = window.getComputedStyle(terminalInput).font;
-        tempSpan.textContent = terminalInput.value || '';
-        document.body.appendChild(tempSpan);
-        
-        // Get exact measurements
-        const inputWidth = tempSpan.getBoundingClientRect().width;
-        document.body.removeChild(tempSpan);
-        
-        // Set cursor position exactly after the input text with some extra spacing for visibility
-        const offset = 14;  // Fine-tuning the cursor position
-        cursorElement.style.left = `${promptWidth + inputWidth + offset}px`;
+        return handler(args);
     }
-    
-    function processCommand(command) {
-        // Create command line element
+
+    function processCommand(input) {
+        if (!input) return;
+
         const cmdLine = document.createElement('div');
         cmdLine.className = 'command-line';
-        cmdLine.innerHTML = `<span class="prompt">james@homer:~$</span> <span class="command">${escapeHTML(command)}</span>`;
+        cmdLine.innerHTML = `<span class="prompt">james@homer:~$</span> <span class="command">${escapeHTML(input)}</span>`;
         commandHistory.appendChild(cmdLine);
-        
-        // Process different commands
-        let output;
-        let isError = false;
-        
-        // Store commands in history if not empty
-        if (command) {
-            if (!window.commandHistoryArray) {
-                window.commandHistoryArray = [];
+
+        history.push(input);
+        historyIndex = history.length;
+
+        const parts = input.trim().split(/\s+/);
+        const result = runCommand(parts[0], parts.slice(1));
+
+        if (result) {
+            const el = document.createElement('div');
+            el.className = result.error ? 'error-output' : 'command-output';
+            if (result.html) {
+                el.innerHTML = result.html;
+            } else {
+                el.textContent = result.text;
             }
-            window.commandHistoryArray.push(command);
+            commandHistory.appendChild(el);
         }
-        
-        // Reset history index to the end of the history after storing the command
-        historyIndex = window.commandHistoryArray.length;
-        
-        // Parse command and arguments
-        const args = command.trim().split(/\s+/);
-        const cmd = args[0].toLowerCase();
-        
-        switch(cmd) {
-            case 'help':
-                output = 'Available commands:\n' +
-                        'help               - Display this help message\n' +
-                        'about              - Learn about James\n' +
-                        'skills             - View technical skills\n' +
-                        'projects           - View portfolio projects\n' +
-                        'contact            - Show contact information\n' +
-                        'ls                 - List portfolio sections\n' +
-                        'cd [section]       - Navigate to a section\n' +
-                        'cat [file]         - Display file contents\n' +
-                        'echo [text]        - Print text to the terminal\n' +
-                        'sudo [command]     - Run a command with elevated (mock) privileges\n' +
-                        'clear              - Clear the terminal\n' +
-                        'print              - Print this webpage\n' +
-                        'history            - Show command history\n' +
-                        'exit | quit        - Display exit instructions';
-                break;
-            case 'about':
-                output = 'James Watson Homer\n' +
-                        'Software Engineer & Computer Science Student at the University of Sydney\n' +
-                        'Born in Sydney, Australia 🇦🇺\n' +
-                        'Passionate about technology, music, and martial arts';
-                break;
-            case 'skills':
-                output = '🛠️ Core Systems: C++, Rust, Java, Linux\n' +
-                        '📊 Data & Automation: Python, OpenAI API, SQL, Docker\n' +
-                        '🌐 Web Development: JavaScript, HTML5, CSS3, React, Node.js\n' +
-                        '🔄 Workflow: Git';
-                break;
-            case 'ls':
-                output = 'home/\nexperience/\nskills/\ninterests/\nskills.json\nprojects.json\ncontact.json\nabout.json';
-                break;
-            case 'projects':
-                output = '1. University of Sydney Rocketry Team\n   - Ground control systems and telemetry software\n   - Real-time data visualization\n\n' +
-                        '2. Personal Website\n   - Interactive terminal UI\n   - Responsive design\n\n' +
-                        '3. Minecraft Plugins\n   - Java-based game extensions\n   - Server administration tools';
-                break;
-            case 'contact':
-                output = 'Email: jameswatsonhomer@gmail.com\nGitHub: https://github.com/JamesWHomer\nLinkedIn: https://www.linkedin.com/in/jameswatsonhomer/\nTwitter: @JamesWHomer';
-                break;
-            case 'history':
-                if (window.commandHistoryArray && window.commandHistoryArray.length > 0) {
-                    output = window.commandHistoryArray.map((cmd, index) => 
-                        `${index + 1}  ${cmd}`).join('\n');
-                } else {
-                    output = 'No command history found';
-                }
-                break;
-            case 'clear':
-                commandHistory.innerHTML = '';
-                return;
-            case 'print':
-                output = 'Preparing to print webpage...';
-                setTimeout(() => {
-                    window.print();
-                }, 500);
-                break;
-            case 'cd':
-                if (args.length === 1) {
-                    output = 'Usage: cd [section]\nAvailable sections: home/, experience/, skills/, interests/';
-                } else {
-                    const section = args[1].toLowerCase();
-                    switch(section) {
-                        case 'skills':
-                        case 'skills/':
-                            output = 'Navigating to: skills/';
-                            document.getElementById('skills').scrollIntoView({ behavior: 'smooth' });
-                            break;
-                        case 'experience':
-                        case 'experience/':
-                            output = 'Navigating to: experience/';
-                            document.getElementById('experience').scrollIntoView({ behavior: 'smooth' });
-                            break;
-                        case 'interests':
-                        case 'interests/':
-                            output = 'Navigating to: interests/';
-                            document.getElementById('interests').scrollIntoView({ behavior: 'smooth' });
-                            break;
-                        case 'home':
-                        case 'home/':
-                            output = 'Navigating to: home/';
-                            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
-                            break;
-                        default:
-                            output = `cd: directory not found: ${section}`;
-                            isError = true;
-                            break;
-                    }
-                }
-                break;
-            case 'sudo': {
-                const sudoCommand = args.slice(1).join(' ');
-                if (sudoCommand === 'rm -rf /') {
-                    // Gag for the classic dangerous command
-                    output = 'Nice try! Permission denied.';
-                    isError = true;
-                } else if (!sudoCommand) {
-                    output = 'sudo: no command specified';
-                    isError = true;
-                } else {
-                    // Execute the underlying command without the sudo prefix
-                    processCommand(sudoCommand);
-                    return; // Skip further processing in this call
-                }
-                break;
-            }
-            case 'exit':
-            case 'quit':
-                output = 'This is just a browser window. Close the tab to exit.';
-                break;
-            case 'cat':
-                if (args.length === 1) {
-                    output = 'Usage: cat [file]\nDisplays the contents of a file.';
-                    isError = true;
-                } else {
-                    const filename = args[1].toLowerCase();
-                    switch(filename) {
-                        case 'skills.json':
-                            output = '{\n  "core": ["C++", "Rust", "Java", "Linux"],\n  "data": ["Python", "OpenAI API", "SQL", "Docker"],\n  "web": ["JavaScript", "HTML5", "CSS3", "React", "Node.js"],\n  "workflow": ["Git"]\n}';
-                            break;
-                        case 'projects.json':
-                            output = '[\n  {\n    "name": "University of Sydney Rocketry Team",\n    "details": [\n      "Ground control systems and telemetry software",\n      "Real-time data visualization"\n    ]\n  },\n  {\n    "name": "Personal Website",\n    "details": [\n      "Interactive terminal UI",\n      "Responsive design"\n    ]\n  },\n  {\n    "name": "Minecraft Plugins",\n    "details": [\n      "Java-based game extensions",\n      "Server administration tools"\n    ]\n  }\n]';
-                            break;
-                        case 'contact.json':
-                            output = '{\n  "email": "jameswatsonhomer@gmail.com",\n  "github": "https://github.com/JamesWHomer",\n  "linkedin": "https://www.linkedin.com/in/jameswatsonhomer/",\n  "twitter": "@JamesWHomer"\n}';
-                            break;
-                        case 'about.json':
-                            output = '{\n  "name": "James Watson Homer",\n  "title": "Software Engineer & Computer Science Student",\n  "university": "University of Sydney",\n  "location": "Sydney, Australia 🇦🇺",\n  "interests": ["technology", "music", "martial arts"]\n}';
-                            break;
-                        default:
-                            output = `cat: ${filename}: No such file or directory`;
-                            isError = true;
-                            break;
-                    }
-                }
-                break;
-            default:
-                if (command.toLowerCase().startsWith('echo ')) {
-                    output = command.substring(5);
-                } else if (command) {
-                    output = `Command not found: ${command}\nType 'help' to see available commands.`;
-                    isError = true;
-                } else {
-                    return;
-                }
-        }
-        
-        // Create and append output
-        const outputElement = document.createElement('div');
-        outputElement.className = isError ? 'error-output' : 'command-output';
-        outputElement.textContent = output;
-        commandHistory.appendChild(outputElement);
-        
-        // Scroll to bottom of terminal
+
         terminalBody.scrollTop = terminalBody.scrollHeight;
     }
-    
-    // Escape HTML to prevent XSS
+
+    // --- Tab completion ---
+    function getCompletions(input) {
+        const parts = input.split(/\s+/);
+        const cmd = parts[0].toLowerCase();
+
+        if (parts.length === 1) {
+            return commandNames.filter(c => c.startsWith(cmd));
+        }
+
+        if (cmd === 'cd' && parts.length === 2) {
+            const partial = parts[1].replace(/\/$/, '').toLowerCase();
+            return sections.filter(s => s.startsWith(partial));
+        }
+
+        return [];
+    }
+
+    // --- Typing animation ---
+    function playIntroAnimation() {
+        const introCmd = document.getElementById('intro-command');
+        const introOutput = document.getElementById('intro-output');
+        const cmdSpan = introCmd.querySelector('.command');
+        const text = './tech-stack.sh';
+        let i = 0;
+
+        introCmd.style.display = '';
+
+        function typeChar() {
+            if (i < text.length) {
+                cmdSpan.textContent += text[i];
+                i++;
+                setTimeout(typeChar, 40 + Math.random() * 40);
+            } else {
+                setTimeout(() => {
+                    introOutput.style.display = '';
+                    introOutput.style.opacity = '0';
+                    introOutput.style.transform = 'translateY(8px)';
+                    requestAnimationFrame(() => {
+                        introOutput.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                        introOutput.style.opacity = '1';
+                        introOutput.style.transform = 'translateY(0)';
+                    });
+                }, 200);
+            }
+        }
+
+        setTimeout(typeChar, 400);
+    }
+
+    const terminalEl = document.querySelector('.terminal');
+    let introPlayed = false;
+
+    const introObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !introPlayed) {
+            introPlayed = true;
+            playIntroAnimation();
+            introObserver.disconnect();
+        }
+    }, { threshold: 0.3 });
+
+    introObserver.observe(terminalEl);
+
+    // --- Utilities ---
     function escapeHTML(text) {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
     }
-    
-    // Initial focus and positioning
-    updateCursorPosition();
-    
-    // Also position cursor on window resize
-    window.addEventListener('resize', updateCursorPosition);
-    
-    // Focus the terminal if user clicks anywhere in the skills section
-    document.querySelector('#skills').addEventListener('click', function(event) {
-        // Only focus if clicking on the section but not on links or other interactive elements
-        if (event.target.closest('a, button, input') === null) {
-            terminalInput.focus();
+
+    function updateCursorPosition() {
+        const promptEl = document.querySelector('.interactive-line .prompt');
+        const promptWidth = promptEl.getBoundingClientRect().width;
+
+        const measure = document.createElement('span');
+        measure.style.cssText = 'visibility:hidden;position:absolute;white-space:pre';
+        measure.style.font = window.getComputedStyle(terminalInput).font;
+        measure.textContent = terminalInput.value || '';
+        document.body.appendChild(measure);
+        const inputWidth = measure.getBoundingClientRect().width;
+        document.body.removeChild(measure);
+
+        cursorElement.style.left = `${promptWidth + inputWidth + 14}px`;
+    }
+
+    // --- Event listeners ---
+    terminalBody.addEventListener('click', () => {
+        terminalInput.focus();
+        terminalBody.classList.add('focused');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!terminalBody.contains(e.target)) {
+            terminalBody.classList.remove('focused');
         }
     });
-    
-    // Initialize with an empty prompt
-    terminalInput.value = '';
+
+    terminalInput.addEventListener('focus', () => { cursorElement.style.display = 'inline-block'; });
+    terminalInput.addEventListener('blur', () => { cursorElement.style.display = 'none'; });
+    terminalInput.addEventListener('input', updateCursorPosition);
+
+    terminalInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            const val = terminalInput.value;
+            const matches = getCompletions(val);
+            if (matches.length === 1) {
+                const parts = val.split(/\s+/);
+                if (parts.length <= 1) {
+                    terminalInput.value = matches[0] + ' ';
+                } else {
+                    parts[parts.length - 1] = matches[0];
+                    terminalInput.value = parts.join(' ') + (parts[0].toLowerCase() === 'cd' ? '/' : ' ');
+                }
+                updateCursorPosition();
+            }
+            return;
+        }
+        if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (historyIndex > 0) historyIndex--;
+            terminalInput.value = history[historyIndex] || '';
+            updateCursorPosition();
+            return;
+        }
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (historyIndex < history.length) historyIndex++;
+            terminalInput.value = historyIndex < history.length ? history[historyIndex] : '';
+            updateCursorPosition();
+            return;
+        }
+        if (e.key === 'Enter') {
+            processCommand(terminalInput.value.trim());
+            terminalInput.value = '';
+        }
+        updateCursorPosition();
+    });
+
+    document.querySelector('#skills').addEventListener('click', (e) => {
+        if (!e.target.closest('a, button, input')) terminalInput.focus();
+    });
+
     updateCursorPosition();
-}); 
+    window.addEventListener('resize', updateCursorPosition);
+});

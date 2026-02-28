@@ -21,9 +21,15 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#interests">Interests</a></li>
             </ul>
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
+    <main>
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
@@ -43,7 +49,7 @@
         <div class="container">
             <h2 class="section-title pixel-font">Experience & Education</h2>
             <div class="timeline">
-                <div class="timeline-item">
+                <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date pixel-font">2024 - Present</div>
                     <div class="timeline-content split-content">
@@ -53,14 +59,14 @@
                             <p>Pursuing a double major in Computer Science and Mathematics, focused on computational theory, systems engineering, and mathematical foundations.</p>
                         </div>
                         <div class="timeline-split-item">
-                            <h3>University of Sydney Rocketry Team</h3>
-                            <p class="timeline-position">Software Engineer</p>
-                            <p>Developing ground control systems and telemetry software for the university's competitive rocketry program.</p>
+                            <h3>USYD Rocketry Team</h3>
+                            <p class="timeline-position">Modelling and Control Engineer</p>
+                            <p>Working on integration of Airbrakes into <a href="https://rocketry-eng.sydney.edu.au/ironbark/" target="_blank" rel="noopener noreferrer">Ironbark</a>, USYD Rocketry's proprietary trajectory simulation software suite. Previously worked on tooling and launch controller design as a Ground Control Engineer.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date pixel-font">2021 - 2024</div>
                     <div class="timeline-content">
@@ -70,7 +76,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date pixel-font">2019 - 2021</div>
                     <div class="timeline-content">
@@ -80,7 +86,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date pixel-font">2016</div>
                     <div class="timeline-content">
@@ -89,7 +95,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item fade-in">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date pixel-font">2006</div>
                     <div class="timeline-content">
@@ -104,7 +110,7 @@
         <div class="container">
             <h2 class="section-title pixel-font">Technical Skills</h2>
             
-            <div class="terminal">
+            <div class="terminal fade-in">
                 <div class="terminal-header">
                     <div class="terminal-controls">
                         <span class="control"></span>
@@ -115,47 +121,12 @@
                 </div>
                 
                 <div class="terminal-body">
-                    <div class="command-line">
+                    <div id="intro-command" class="command-line" style="display:none">
                         <span class="prompt">james@homer:~$</span> 
-                        <span class="command">cat skills.json</span>
+                        <span class="command"></span>
                     </div>
                     
-                    <div class="output">
-                        <div class="code-block">
-                            <div class="line"><span class="bracket">{</span></div>
-                            <div class="line indent"><span class="key">"core_systems"</span><span class="colon">:</span> <span class="bracket">{</span></div>
-                            <div class="line double-indent"><span class="key">"C++"</span><span class="colon">:</span> <span class="value">"System programming, Data structures, Algorithms"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"Rust"</span><span class="colon">:</span> <span class="value">"Memory safety, Systems programming, Performance"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"Java"</span><span class="colon">:</span> <span class="value">"Plugin development, OOP, Android apps"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"Linux"</span><span class="colon">:</span> <span class="value">"Shell scripting, System administration"</span></div>
-                            <div class="line indent"><span class="bracket">}</span><span class="comma">,</span></div>
-                            
-                            <div class="line indent"><span class="key">"data_automation"</span><span class="colon">:</span> <span class="bracket">{</span></div>
-                            <div class="line double-indent"><span class="key">"Python"</span><span class="colon">:</span> <span class="value">"Data analysis, Automation, Scripting"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"OpenAI API"</span><span class="colon">:</span> <span class="value">"LLM integration, AI assistants, Prompt engineering"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"SQL"</span><span class="colon">:</span> <span class="value">"Database design, Queries, Optimization"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"Docker"</span><span class="colon">:</span> <span class="value">"Containerization, Deployment"</span></div>
-                            <div class="line indent"><span class="bracket">}</span><span class="comma">,</span></div>
-                            
-                            <div class="line indent"><span class="key">"web_development"</span><span class="colon">:</span> <span class="bracket">{</span></div>
-                            <div class="line double-indent"><span class="key">"JavaScript"</span><span class="colon">:</span> <span class="value">"Web development, DOM manipulation"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"HTML5"</span><span class="colon">:</span> <span class="value">"Semantic markup, Accessibility"</span><span class="comma">,</span></div>
-                            <div class="line double-indent"><span class="key">"CSS3"</span><span class="colon">:</span> <span class="value">"Responsive design, Flexbox, Grid"</span></div>
-                            <div class="line indent"><span class="bracket">}</span><span class="comma">,</span></div>
-                            
-                            <div class="line indent"><span class="key">"workflow"</span><span class="colon">:</span> <span class="bracket">{</span></div>
-                            <div class="line double-indent"><span class="key">"Git"</span><span class="colon">:</span> <span class="value">"Version control, Collaboration, CI/CD"</span></div>
-                            <div class="line indent"><span class="bracket">}</span></div>
-                            <div class="line"><span class="bracket">}</span></div>
-                        </div>
-                    </div>
-                    
-                    <div class="command-line">
-                        <span class="prompt">james@homer:~$</span> 
-                        <span class="command">./tech-stack.sh</span>
-                    </div>
-                    
-                    <div class="output-analysis">
+                    <div id="intro-output" class="output-analysis" style="display:none">
                         <div class="tech-stack-line">
                             <div class="tech-stack-label">Core Systems:</div>
                             <div class="tech-stack-items">
@@ -199,7 +170,7 @@
                     </div>
                     
                     <div class="terminal-commands">
-                        Try commands: help, ls, cd [section], skills
+                        Try commands: help, about, ls, cd [section]
                     </div>
                 </div>
             </div>
@@ -210,7 +181,7 @@
         <div class="container">
             <h2 class="section-title pixel-font">Beyond Coding</h2>
             <div class="interests-container">
-                <div class="interest-card">
+                <div class="interest-card fade-in">
                     <div class="interest-icon">
                         <i class="fas fa-robot"></i>
                     </div>
@@ -218,7 +189,7 @@
                     <p>Passionate about artificial intelligence and its potential to transform humanity. Actively exploring machine learning concepts and following developments toward AGI and the Singularity.</p>
                 </div>
                 
-                <div class="interest-card">
+                <div class="interest-card fade-in">
                     <div class="interest-icon">
                         <i class="fas fa-square-root-variable"></i>
                     </div>
@@ -242,16 +213,17 @@
                     <p>Practicing Judo to improve physical resilience while learning the values of respect and perseverance both on and off the mat.</p>
                 </div> -->
                 
-                <div class="interest-card">
+                <div class="interest-card fade-in">
                     <div class="interest-icon">
                         <i class="fas fa-rocket"></i>
                     </div>
                     <h3 class="pixel-font">Rocketry</h3>
-                    <p>Ground control engineer for the University of Sydney Rocketry Team, combining engineering skills with passion for aerospace.</p>
+                    <p>Modelling and control engineer for the USYD Rocketry Team, working on trajectory simulation and airbrake integration.</p>
                 </div>
             </div>
         </div>
     </section>
+    </main>
 
     <footer class="footer">
         <div class="container">
