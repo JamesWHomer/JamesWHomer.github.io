@@ -50,6 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             return runCommand(args[0], args.slice(1));
         },
+        whoami: () => ({
+            text: 'james'
+        }),
+        date: () => ({
+            text: new Date().toString()
+        }),
         'tech-stack.sh': () => ({
             text: 'Core Systems:       C++, Rust, Java, Linux\n' +
                   'Data & Automation:  Python, OpenAI API, SQL, Docker\n' +
