@@ -172,7 +172,7 @@ img {
 
 /* Hero Section - Centered Design */
 .hero {
-    padding: 160px 0 100px;
+    padding: 150px 0 80px;
     background-color: var(--light-color);
     display: flex;
     align-items: center;
@@ -220,7 +220,7 @@ img {
     font-size: 20px;
     font-weight: 400;
     color: var(--text-color);
-    margin-bottom: 28px;
+    margin-bottom: 26px;
     letter-spacing: 0.3px;
 }
 
@@ -271,7 +271,7 @@ section, .hero {
 }
 
 section {
-    padding: 100px 0;
+    padding: 70px 0;
 }
 
 section:nth-child(odd) {
@@ -281,7 +281,7 @@ section:nth-child(odd) {
 .section-title {
     text-align: center;
     font-size: 20px;
-    margin-bottom: 70px;
+    margin-bottom: 45px;
     position: relative;
     display: inline-block;
     left: 50%;
@@ -319,7 +319,7 @@ section:nth-child(odd) {
 
 .timeline-item {
     position: relative;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .timeline-item:last-child {
@@ -344,7 +344,7 @@ section:nth-child(odd) {
 
 .timeline-content {
     background-color: var(--card-bg);
-    padding: 30px;
+    padding: 24px 28px;
     border-radius: 0;
     border: 1px solid var(--border-color);
 }
@@ -360,7 +360,7 @@ section:nth-child(odd) {
     font-size: 18px;
     font-weight: 500;
     color: var(--primary-color);
-    margin-bottom: 18px;
+    margin-bottom: 12px;
 }
 
 .timeline-content p {
@@ -370,7 +370,7 @@ section:nth-child(odd) {
 /* Technical Skills Section - Refined Terminal */
 .skills {
     background-color: var(--section-bg);
-    padding-bottom: 80px;
+    padding-bottom: 60px;
 }
 
 @media (max-width: 768px) {
@@ -386,7 +386,7 @@ section:nth-child(odd) {
 
 @media (max-width: 480px) {
     .hero {
-        padding: 120px 0 50px;
+        padding: 115px 0 45px;
     }
 }
 
@@ -399,7 +399,7 @@ section:nth-child(odd) {
 
 .interest-card {
     background-color: var(--card-bg);
-    padding: 35px;
+    padding: 26px 28px;
     border-radius: 0;
     border: 1px solid var(--border-color);
     transition: transform 0.3s ease;
@@ -415,7 +415,7 @@ section:nth-child(odd) {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 25px;
+    margin-bottom: 16px;
     color: var(--primary-color);
 }
 
@@ -426,7 +426,7 @@ section:nth-child(odd) {
 .interest-card h3 {
     font-family: 'Press Start 2P', cursive;
     font-size: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
     color: var(--dark-color);
 }
 
@@ -440,7 +440,7 @@ section:nth-child(odd) {
 /* Footer - Modern Redesign */
 .footer {
     background-color: var(--section-bg);
-    padding: 60px 0 40px;
+    padding: 40px 0 30px;
     position: relative;
 }
 
@@ -462,7 +462,7 @@ section:nth-child(odd) {
 }
 
 .footer-logo {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .logo-text {
@@ -476,7 +476,7 @@ section:nth-child(odd) {
 .footer-links {
     display: flex;
     gap: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .footer-links a {
@@ -508,7 +508,7 @@ section:nth-child(odd) {
 .footer-social {
     display: flex;
     gap: 25px;
-    margin-bottom: 35px;
+    margin-bottom: 22px;
 }
 
 .footer-social a {
@@ -530,7 +530,7 @@ section:nth-child(odd) {
 
 @media (max-width: 768px) {
     .footer {
-        padding: 50px 0 30px;
+        padding: 35px 0 25px;
     }
     
     .footer-links {
@@ -618,7 +618,7 @@ section:nth-child(odd) {
     }
     
     .hero {
-        padding: 140px 0 80px;
+        padding: 130px 0 65px;
     }
     
     .name-title {
@@ -634,7 +634,7 @@ section:nth-child(odd) {
     }
     
     section {
-        padding: 80px 0;
+        padding: 55px 0;
     }
     
     .timeline {
@@ -646,7 +646,7 @@ section:nth-child(odd) {
     }
     
     .timeline-content {
-        padding: 25px;
+        padding: 20px 22px;
     }
 }
 
@@ -661,7 +661,7 @@ section:nth-child(odd) {
     
     .section-title {
         font-size: 18px;
-        margin-bottom: 50px;
+        margin-bottom: 35px;
     }
     
     .timeline-date {
@@ -680,7 +680,7 @@ section:nth-child(odd) {
 /* Split timeline content for side-by-side entries */
 .split-content {
     display: flex;
-    gap: 40px;
+    gap: 32px;
     position: relative;
 }
 
@@ -713,7 +713,7 @@ section:nth-child(odd) {
     font-size: 18px;
     font-weight: 500;
     color: var(--primary-color);
-    margin-bottom: 18px;
+    margin-bottom: 12px;
 }
 
 .timeline-split-item p:not(.timeline-position) {
