@@ -38,6 +38,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 menuToggle.setAttribute('aria-expanded', 'false');
             });
         });
+
+        document.addEventListener('click', function(e) {
+            if (navLinks.classList.contains('active') &&
+                !navLinks.contains(e.target) &&
+                !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
     }
 
     // Fade-in animations for elements as they enter viewport
