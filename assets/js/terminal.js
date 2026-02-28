@@ -241,8 +241,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Enter') {
             processCommand(terminalInput.value.trim());
             terminalInput.value = '';
+            updateCursorPosition();
         }
-        updateCursorPosition();
     });
 
     document.querySelector('#skills').addEventListener('click', (e) => {
