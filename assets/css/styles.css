@@ -102,6 +102,11 @@ img {
     color: var(--primary-color);
     padding: 8px 14px;
     border: 1px solid var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: translateY(-5px);
 }
 
 .nav-links {
@@ -468,10 +473,9 @@ section:nth-child(odd) {
 }
 
 .logo-text {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 18px;
     color: var(--primary-color);
-    padding: 8px 12px;
+    padding: 8px 14px;
     border: 1px solid var(--primary-color);
 }
 
