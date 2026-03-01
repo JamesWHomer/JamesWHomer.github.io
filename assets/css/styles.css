@@ -374,6 +374,18 @@ section:nth-child(odd) {
     font-size: 16px;
 }
 
+.timeline-content a,
+.timeline-split-item a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 500;
+}
+
+.timeline-content a:hover,
+.timeline-split-item a:hover {
+    opacity: 0.7;
+}
+
 /* Technical Skills Section - Refined Terminal */
 .skills {
     background-color: var(--section-bg);
@@ -442,6 +454,16 @@ section:nth-child(odd) {
     color: var(--text-color);
     line-height: 1.7;
     font-size: 16px;
+}
+
+.interest-card a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 500;
+}
+
+.interest-card a:hover {
+    opacity: 0.7;
 }
 
 /* Footer - Modern Redesign */
