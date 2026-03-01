@@ -578,7 +578,7 @@ section:nth-child(odd) {
     }
     
     .interests-container {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -650,6 +650,10 @@ section:nth-child(odd) {
     
     .timeline-content {
         padding: 20px 22px;
+    }
+    
+    .interests-container {
+        grid-template-columns: 1fr;
     }
 }
 
