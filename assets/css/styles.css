@@ -311,6 +311,7 @@ section:nth-child(odd) {
     --content-gap: 20px;
     position: relative;
     padding-left: calc(var(--line-offset) + var(--content-gap));
+    transform: translateX(calc(-0.5 * (var(--line-offset) + var(--content-gap))));
 }
 
 .timeline:before {
