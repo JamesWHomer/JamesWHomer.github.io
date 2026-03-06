@@ -92,11 +92,13 @@ img {
 }
 
 .logo {
+    display: inline-block;
     font-size: 18px;
     color: var(--primary-color);
     padding: 8px 14px;
     border: 1px solid var(--primary-color);
     transition: transform 0.3s ease;
+    text-decoration: none;
 }
 
 .logo:hover {
