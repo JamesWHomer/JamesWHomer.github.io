@@ -56,13 +56,46 @@ document.addEventListener('DOMContentLoaded', function() {
             text: new Date().toString()
         }),
         'tech-stack.sh': () => ({
-            text: 'Core Systems:       C++, Rust, Java, Linux\n' +
-                  'Data & Automation:  Python, OpenAI API, SQL, Docker\n' +
-                  'Web Development:    JavaScript, HTML5, CSS3\n' +
-                  'Workflow:           Git'
+            className: 'output-analysis',
+            html: '<div class="tech-stack-line">' +
+                      '<div class="tech-stack-label">Core Systems:</div>' +
+                      '<div class="tech-stack-items">' +
+                          '<span class="tech-item system">C++</span>' +
+                          '<span class="tech-item system">Rust</span>' +
+                          '<span class="tech-item system">Java</span>' +
+                          '<span class="tech-item system">Linux</span>' +
+                      '</div>' +
+                  '</div>' +
+                  '<div class="tech-stack-line">' +
+                      '<div class="tech-stack-label">Data &amp; Automation:</div>' +
+                      '<div class="tech-stack-items">' +
+                          '<span class="tech-item data">Python</span>' +
+                          '<span class="tech-item data">OpenAI API</span>' +
+                          '<span class="tech-item data">SQL</span>' +
+                          '<span class="tech-item data">Docker</span>' +
+                      '</div>' +
+                  '</div>' +
+                  '<div class="tech-stack-line">' +
+                      '<div class="tech-stack-label">Web Development:</div>' +
+                      '<div class="tech-stack-items">' +
+                          '<span class="tech-item web">JavaScript</span>' +
+                          '<span class="tech-item web">HTML5</span>' +
+                          '<span class="tech-item web">CSS3</span>' +
+                      '</div>' +
+                  '</div>' +
+                  '<div class="tech-stack-line">' +
+                      '<div class="tech-stack-label">Workflow:</div>' +
+                      '<div class="tech-stack-items">' +
+                          '<span class="tech-item workflow">Git</span>' +
+                      '</div>' +
+                  '</div>'
         }),
         clear: () => {
             commandHistory.innerHTML = '';
+            const introCmd = document.getElementById('intro-command');
+            const introOutput = document.getElementById('intro-output');
+            if (introCmd) introCmd.style.display = 'none';
+            if (introOutput) introOutput.style.display = 'none';
             document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
             return null;
         }
@@ -95,10 +128,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (result) {
             const el = document.createElement('div');
-            el.className = result.error ? 'error-output' : 'command-output';
             if (result.html) {
+                el.className = result.className || 'command-output';
                 el.innerHTML = result.html;
             } else {
+                el.className = result.error ? 'error-output' : 'command-output';
                 el.textContent = result.text;
             }
             commandHistory.appendChild(el);
