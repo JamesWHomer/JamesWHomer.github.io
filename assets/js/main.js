@@ -4,6 +4,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    const copyrightYear = document.getElementById('copyright-year');
+    if (copyrightYear) copyrightYear.textContent = new Date().getFullYear();
+
     // Mobile menu toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
