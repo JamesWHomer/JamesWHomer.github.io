@@ -22,12 +22,6 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-html::-webkit-scrollbar {
-    display: none;
 }
 
 body {
