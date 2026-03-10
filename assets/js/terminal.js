@@ -144,10 +144,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Tab completion ---
     function getCompletions(input) {
         const parts = input.split(/\s+/);
-        const cmd = parts[0].toLowerCase();
+        const raw = parts[0];
+        const hasPrefix = raw.startsWith('./');
+        const cmd = raw.toLowerCase().replace(/^\.\//, '');
 
         if (parts.length === 1) {
-            return commandNames.filter(c => c.startsWith(cmd));
+            const matches = commandNames.filter(c => c.startsWith(cmd));
+            return hasPrefix ? matches.map(m => './' + m) : matches;
         }
 
         if (cmd === 'cd' && parts.length === 2) {
@@ -222,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const inputWidth = measure.getBoundingClientRect().width;
         document.body.removeChild(measure);
 
-        cursorElement.style.left = `${promptWidth + inputWidth + 14}px`;
+        cursorElement.style.left = `${promptWidth + inputWidth + 10}px`;
     }
 
     // --- Event listeners ---
@@ -279,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    document.querySelector('#skills').addEventListener('click', (e) => {
+    document.querySelector('.terminal').addEventListener('click', (e) => {
         if (!e.target.closest('a, button, input')) terminalInput.focus();
     });
 

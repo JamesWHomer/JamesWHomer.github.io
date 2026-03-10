@@ -99,7 +99,6 @@
     font-size: 16px;
     caret-color: transparent;
     flex: 1;
-    margin-left: 4px;
     padding: 0;
     line-height: 24px;
     height: 24px;
@@ -129,6 +128,7 @@
     white-space: pre-wrap;
     color: #FF6B6B;
     margin-top: 8px;
+    margin-bottom: 16px;
     font-size: 15px;
     line-height: 1.4;
 }
@@ -146,9 +146,10 @@
 }
 
 .command-line {
-    margin-bottom: 18px;
+    margin-bottom: 4px;
     display: flex;
     align-items: center;
+    height: 24px;
 }
 
 .command {
@@ -250,6 +251,19 @@
     
     .terminal-body {
         padding: 16px;
-        font-size: 12px;
+        font-size: 14px;
+    }
+
+    .interactive-input {
+        font-size: 14px;
+    }
+
+    .command-output,
+    .error-output {
+        font-size: 14px;
+    }
+
+    .tech-stack-line {
+        font-size: 14px;
     }
 } 
