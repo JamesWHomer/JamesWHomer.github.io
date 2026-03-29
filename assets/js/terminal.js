@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const history = [];
     let historyIndex = 0;
 
-    const sections = ['home', 'experience', 'skills', 'interests'];
+    const sections = Array.from(document.querySelectorAll('section[id]')).map(s => s.id);
 
     const commands = {
         help: () => ({
@@ -213,19 +213,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return div.innerHTML;
     }
 
+    const measureSpan = document.createElement('span');
+    measureSpan.style.cssText = 'visibility:hidden;position:absolute;white-space:pre';
+    measureSpan.style.font = window.getComputedStyle(terminalInput).font;
+    document.body.appendChild(measureSpan);
+
     function updateCursorPosition() {
         const promptEl = document.querySelector('.interactive-line .prompt');
         const promptWidth = promptEl.getBoundingClientRect().width;
 
-        const measure = document.createElement('span');
-        measure.style.cssText = 'visibility:hidden;position:absolute;white-space:pre';
-        measure.style.font = window.getComputedStyle(terminalInput).font;
-        measure.textContent = terminalInput.value || '';
-        document.body.appendChild(measure);
-        const inputWidth = measure.getBoundingClientRect().width;
-        document.body.removeChild(measure);
+        measureSpan.textContent = terminalInput.value || '';
+        const inputWidth = measureSpan.getBoundingClientRect().width;
 
-        cursorElement.style.left = `${promptWidth + inputWidth + 10}px`;
+        if (cursorElement) cursorElement.style.left = `${promptWidth + inputWidth + 10}px`;
     }
 
     // --- Event listeners ---
@@ -263,15 +263,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (e.key === 'ArrowUp') {
             e.preventDefault();
-            if (historyIndex > 0) historyIndex--;
-            terminalInput.value = history[historyIndex] || '';
+            if (history.length > 0 && historyIndex > 0) {
+                historyIndex--;
+                terminalInput.value = history[historyIndex];
+            }
             updateCursorPosition();
             return;
         }
         if (e.key === 'ArrowDown') {
             e.preventDefault();
-            if (historyIndex < history.length) historyIndex++;
-            terminalInput.value = historyIndex < history.length ? history[historyIndex] : '';
+            if (historyIndex < history.length - 1) {
+                historyIndex++;
+                terminalInput.value = history[historyIndex];
+            } else {
+                historyIndex = history.length;
+                terminalInput.value = '';
+            }
             updateCursorPosition();
             return;
         }
