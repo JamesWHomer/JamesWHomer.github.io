@@ -186,6 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         introOutput.style.opacity = '1';
                         introOutput.style.transform = 'translateY(0)';
                     });
+                    terminalBody.classList.remove('intro-playing');
+                    updateCursorPosition();
                 }, 200);
             }
         }

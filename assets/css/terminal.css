@@ -78,6 +78,11 @@
     cursor: text;
 }
 
+.terminal-body.intro-playing .interactive-line,
+.terminal-body.intro-playing .terminal-commands {
+    display: none;
+}
+
 .terminal-body.focused {
     outline: 1px solid rgba(255, 255, 255, 0.3);
 }
