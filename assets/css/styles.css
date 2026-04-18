@@ -19,6 +19,17 @@
     box-sizing: border-box;
 }
 
+::selection {
+    background-color: #111111;
+    color: #ffffff;
+}
+
+:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -104,6 +115,13 @@ img {
     backdrop-filter: blur(10px);
     z-index: 1000;
     padding: 18px 0;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.navbar.scrolled {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 .navbar .container {
@@ -118,12 +136,14 @@ img {
     color: var(--primary-color);
     padding: 8px 14px;
     border: 1px solid var(--primary-color);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
     text-decoration: none;
 }
 
 .logo:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
+    background-color: var(--primary-color);
+    color: var(--light-color);
 }
 
 .nav-links {
@@ -266,13 +286,15 @@ img {
 
 .social-links a {
     color: var(--dark-color);
-    font-size: 18px;
-    transition: color 0.2s ease, transform 0.2s ease;
+    font-size: 20px;
+    transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.85;
 }
 
 .social-links a:hover {
     color: var(--primary-color);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    opacity: 1;
 }
 
 /* Fade-in Animation */
@@ -359,6 +381,7 @@ section:nth-child(odd) {
     border-radius: 50%;
     background-color: var(--timeline-dot);
     transform: translateX(-50%);
+    box-shadow: 0 0 0 4px var(--section-bg), 0 0 0 5px rgba(0, 0, 0, 0.08);
 }
 
 .timeline-date {
@@ -372,6 +395,14 @@ section:nth-child(odd) {
     padding: 24px 28px;
     border-radius: 0;
     border: 1px solid var(--border-color);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    border-color: #d0d0d0;
 }
 
 .timeline-content h3 {
@@ -439,11 +470,22 @@ section:nth-child(odd) {
     padding: 26px 28px;
     border-radius: 0;
     border: 1px solid var(--border-color);
-    transition: transform 0.3s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .interest-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    border-color: #d0d0d0;
+}
+
+.interest-icon {
+    transition: transform 0.4s ease;
+}
+
+.interest-card:hover .interest-icon {
+    transform: translateY(-2px) scale(1.05);
 }
 
 .interest-icon {
@@ -779,11 +821,12 @@ section:nth-child(odd) {
         height: 1px;
         left: 10%;
         top: 50%;
+        transform: translateY(-50%);
     }
-    
+
     .timeline-split-item:first-child {
-        margin-bottom: 20px;
-        padding-bottom: 30px;
+        margin-bottom: 10px;
+        padding-bottom: 20px;
     }
 }
 
