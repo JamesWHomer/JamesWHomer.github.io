@@ -293,4 +293,15 @@
     .tech-stack-line {
         font-size: 14px;
     }
-} 
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .terminal:hover,
+    .tech-item:hover {
+        transform: none;
+    }
+
+    .blink {
+        animation: none;
+    }
+}

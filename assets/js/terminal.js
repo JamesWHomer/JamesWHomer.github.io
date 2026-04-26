@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const terminalInput = document.querySelector('.interactive-input');
     const commandHistory = document.getElementById('command-history');
     const cursorElement = document.querySelector('.blink');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const scrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
 
     const history = [];
     let historyIndex = 0;
@@ -35,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             const target = args[0].replace(/\/$/, '').toLowerCase();
             if (sections.includes(target)) {
-                document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById(target)?.scrollIntoView({ behavior: scrollBehavior });
                 return { text: `Navigating to: ${target}/` };
             }
             return { text: `cd: directory not found: ${args[0]}`, error: true };
@@ -96,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const introOutput = document.getElementById('intro-output');
             if (introCmd) introCmd.style.display = 'none';
             if (introOutput) introOutput.style.display = 'none';
-            document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('skills')?.scrollIntoView({ behavior: scrollBehavior });
             return null;
         }
     };
@@ -170,6 +172,14 @@ document.addEventListener('DOMContentLoaded', function() {
         let i = 0;
 
         introCmd.style.display = '';
+
+        if (prefersReducedMotion) {
+            cmdSpan.textContent = text;
+            introOutput.style.display = '';
+            terminalBody.classList.remove('intro-playing');
+            updateCursorPosition();
+            return;
+        }
 
         function typeChar() {
             if (i < text.length) {
