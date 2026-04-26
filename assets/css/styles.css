@@ -316,10 +316,12 @@ section, .hero {
 
 section {
     padding: 70px 0;
+    --current-bg: var(--light-color);
 }
 
 section:nth-child(odd) {
     background-color: var(--section-bg);
+    --current-bg: var(--section-bg);
 }
 
 .section-title {
@@ -381,7 +383,7 @@ section:nth-child(odd) {
     border-radius: 50%;
     background-color: var(--timeline-dot);
     transform: translateX(-50%);
-    box-shadow: 0 0 0 4px var(--section-bg), 0 0 0 5px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 0 4px var(--current-bg, var(--light-color)), 0 0 0 5px rgba(0, 0, 0, 0.08);
 }
 
 .timeline-date {
@@ -817,16 +819,23 @@ section:nth-child(odd) {
     }
     
     .split-content::after {
-        width: 80%;
-        height: 1px;
-        left: 10%;
-        top: 50%;
-        transform: translateY(-50%);
+        display: none;
     }
 
     .timeline-split-item:first-child {
+        position: relative;
         margin-bottom: 10px;
         padding-bottom: 20px;
+    }
+
+    .timeline-split-item:first-child::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 10%;
+        width: 80%;
+        height: 1px;
+        background-color: var(--border-color);
     }
 }
 
