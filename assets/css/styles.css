@@ -319,7 +319,7 @@ section {
     --current-bg: var(--light-color);
 }
 
-section:nth-child(odd) {
+section:nth-child(even) {
     background-color: var(--section-bg);
     --current-bg: var(--section-bg);
 }
@@ -439,7 +439,6 @@ section:nth-child(odd) {
 
 /* Technical Skills Section - Refined Terminal */
 .skills {
-    background-color: var(--section-bg);
     padding-bottom: 60px;
 }
 
@@ -526,6 +525,30 @@ section:nth-child(odd) {
 
 .interest-card a:hover {
     opacity: 0.7;
+}
+
+/* Projects Section - reuses .interest-card styling */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.project-card ul {
+    padding-left: 18px;
+    margin-top: 12px;
+}
+
+.project-card li {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+
+.project-card li:last-child {
+    margin-bottom: 0;
 }
 
 /* Footer - Modern Redesign */
@@ -735,8 +758,9 @@ section:nth-child(odd) {
     .timeline-content {
         padding: 20px 22px;
     }
-    
-    .interests-container {
+
+    .interests-container,
+    .projects-container {
         grid-template-columns: 1fr;
     }
 }
@@ -809,6 +833,11 @@ section:nth-child(odd) {
 
 .timeline-split-item p:not(.timeline-position) {
     font-size: 16px;
+}
+
+/* Second and subsequent roles stacked in one split column */
+.timeline-split-item p + .timeline-position {
+    margin-top: 20px;
 }
 
 /* Make the split layout responsive */

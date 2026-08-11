@@ -16,3 +16,10 @@ npm-debug.log*
 
 # Node (if ever added)
 node_modules/
+
+# LaTeX build artifacts
+*.aux
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk

@@ -1,0 +1,79 @@
+\documentclass[10pt, letterpaper]{article}
+
+\usepackage[
+    margin=1.9cm,
+    footskip=0.8cm
+]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{parskip}
+\usepackage{charter}
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=0cm, leftmargin=*}
+
+\linespread{0.89}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE\textbf{James Homer}}\\[5pt]
+    Sydney, Australia\\
+    \href{mailto:jameswatsonhomer@gmail.com}{jameswatsonhomer@gmail.com} \textbar\
+    +61 478 630 057 \textbar\
+    \href{https://jameshomer.dev/}{jameshomer.dev} \textbar\
+    \href{https://github.com/JamesWHomer}{github.com/JamesWHomer} \textbar\
+    \href{https://linkedin.com/in/jameswatsonhomer}{linkedin.com/in/jameswatsonhomer}
+\end{center}
+
+\vspace{7pt}
+
+\section*{Profile}
+
+Computer Science Student at The University of Sydney and former Senior Engineer at USYD Rocketry Team. Early adopter and enthusiast in AI, planning on honours and a PhD in AI.
+
+\section*{Education}
+
+\textbf{The University of Sydney} \hfill Sydney, Australia\\
+Bachelor of Advanced Computing (Computer Science) (Dalyell Scholar - WAM: 80)\hfill \textbf{2024 -- Expected June 2028} \\
+
+\textbf{The International High School of the Gothenburg Region} \hfill Gothenburg, Sweden\\
+International Baccalaureate Diploma \hfill \textbf{2021 -- 2024}
+
+\section*{Experience}
+
+\textbf{Senior Modelling and Control Engineer, University of Sydney Rocketry Team} \hfill \textbf{Aug 2025 -- Aug 2026}
+\begin{itemize}
+    \item Led integration of airbrakes into USYD Rocketry's ``\href{https://rocketry-eng.sydney.edu.au/ironbark/}{Ironbark}'' trajectory simulator.
+    \item Mentored 2 junior members of the team and contributed to the team's design process and documentation.
+    \item Instrumental in developing Ironbark to enable its use in determining oxidizer fill levels and fitting control algorithms which USYD Rocketry used to (again) win category first place at IREC (International Rocket Engineering Competition) 2026.
+\end{itemize}
+\textbf{Ground Control Software Engineer, University of Sydney Rocketry Team} \hfill \textbf{Sep 2024 -- Aug 2025}
+\begin{itemize}
+    \item Created CLI data management tools with FTP to safely handle telemetry data.
+    \item Designed panels to be laser cut and aided in design of launch controller.
+    \item Built data tooling that USYD Rocketry team used to win first place at IREC 2025 at Midland, Texas against 142 university teams from 22 countries.
+\end{itemize}
+
+\section*{Projects}
+
+\href{https://github.com/JamesWHomer/jarv}{\textbf{Jarv}} - AI Agent TUI
+\begin{itemize}
+    \item Built a scriptable and interactive Python TUI agent interface that interfaces with several model providers.
+    \item Used httpx for direct provider API transports, supporting several agent tools, allowing the agent to browse the web, edit codebases, change computer settings, etc.
+    \item Includes automatic cost tracking as well as automatic model listing using /models endpoint with regex to display the most up-to-date model and pricing without updating Jarv.
+    \item Automatic auditor review of risky commands to reduce the effectiveness of prompt injection attacks or unwanted behavior.
+\end{itemize}
+
+\href{https://rocketry-eng.sydney.edu.au/ironbark/}{\textbf{Ironbark}} - 6-DOF Rocket Trajectory Simulator
+\begin{itemize}
+    \item Lead developer and maintainer of Ironbark, USYD Rocketry Team's proprietary trajectory solver.
+    \item Implemented airbrake simulation and a modular framework for control algorithms into Ironbark, USYD Rocketry's first actively controlled rocket.
+    \item Migrated Ironbark aerodynamics from panel solver techniques to Gaussian Processes (scikit-learn) using CFD-derived aerodynamic data, significantly improving sample efficiency, simulation accuracy, and interpolation simplicity.
+\end{itemize}
+
+\section*{Core Technical Skills}
+\textbf{Languages:} Python, Java, C, R, SQL, Bash \\
+\textbf{Frameworks \& Tools:} PyTorch, scikit-learn, NumPy, Docker, Git, CI/CD, Agile/Scrum
+
+\end{document}

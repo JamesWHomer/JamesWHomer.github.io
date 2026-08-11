@@ -22,11 +22,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }),
         about: () => ({
             html: 'James Watson Homer<br>' +
-                  'Software Engineer &amp; Computer Science Student at the University of Sydney<br>' +
+                  'Computer Science Student at the University of Sydney<br>' +
                   'Born in Sydney, Australia<br><br>' +
                   'Email:    <a href="mailto:jameswatsonhomer@gmail.com" target="_blank" rel="noopener">jameswatsonhomer@gmail.com</a><br>' +
                   'GitHub:   <a href="https://github.com/JamesWHomer" target="_blank" rel="noopener">github.com/JamesWHomer</a><br>' +
-                  'LinkedIn: <a href="https://www.linkedin.com/in/jameswatsonhomer/" target="_blank" rel="noopener">linkedin.com/in/jameswatsonhomer</a>'
+                  'LinkedIn: <a href="https://www.linkedin.com/in/jameswatsonhomer/" target="_blank" rel="noopener">linkedin.com/in/jameswatsonhomer</a><br>' +
+                  'Website:  <a href="https://jameshomer.dev/" target="_blank" rel="noopener">jameshomer.dev</a>'
         }),
         ls: () => ({
             text: sections.map(s => s + '/').join('\n') + '\ntech-stack.sh'
@@ -60,35 +61,26 @@ document.addEventListener('DOMContentLoaded', function() {
         'tech-stack.sh': () => ({
             className: 'output-analysis',
             html: '<div class="tech-stack-line">' +
-                      '<div class="tech-stack-label">Core Systems:</div>' +
+                      '<div class="tech-stack-label">Languages:</div>' +
                       '<div class="tech-stack-items">' +
-                          '<span class="tech-item system">C++</span>' +
-                          '<span class="tech-item system">Rust</span>' +
+                          '<span class="tech-item system">Python</span>' +
                           '<span class="tech-item system">Java</span>' +
-                          '<span class="tech-item system">Linux</span>' +
+                          '<span class="tech-item system">C</span>' +
+                          '<span class="tech-item system">R</span>' +
+                          '<span class="tech-item system">SQL</span>' +
+                          '<span class="tech-item system">Bash</span>' +
                       '</div>' +
                   '</div>' +
                   '<div class="tech-stack-line">' +
-                      '<div class="tech-stack-label">Data &amp; Automation:</div>' +
+                      '<div class="tech-stack-label">Frameworks &amp; Tools:</div>' +
                       '<div class="tech-stack-items">' +
-                          '<span class="tech-item data">Python</span>' +
-                          '<span class="tech-item data">OpenAI API</span>' +
-                          '<span class="tech-item data">SQL</span>' +
+                          '<span class="tech-item data">PyTorch</span>' +
+                          '<span class="tech-item data">scikit-learn</span>' +
+                          '<span class="tech-item data">NumPy</span>' +
                           '<span class="tech-item data">Docker</span>' +
-                      '</div>' +
-                  '</div>' +
-                  '<div class="tech-stack-line">' +
-                      '<div class="tech-stack-label">Web Development:</div>' +
-                      '<div class="tech-stack-items">' +
-                          '<span class="tech-item web">JavaScript</span>' +
-                          '<span class="tech-item web">HTML5</span>' +
-                          '<span class="tech-item web">CSS3</span>' +
-                      '</div>' +
-                  '</div>' +
-                  '<div class="tech-stack-line">' +
-                      '<div class="tech-stack-label">Workflow:</div>' +
-                      '<div class="tech-stack-items">' +
-                          '<span class="tech-item workflow">Git</span>' +
+                          '<span class="tech-item data">Git</span>' +
+                          '<span class="tech-item data">CI/CD</span>' +
+                          '<span class="tech-item data">Agile/Scrum</span>' +
                       '</div>' +
                   '</div>'
         }),
